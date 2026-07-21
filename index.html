@@ -667,6 +667,19 @@
                 z-index: 1;
             }
 
+            /* Tabs row scrolls horizontally instead of clipping the last tab off-screen */
+            .tabs-nav {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: thin;
+            }
+
+            .tabs-nav .tab {
+                flex-shrink: 0;
+                white-space: nowrap;
+            }
+
             .search-bar {
                 width: auto;
                 flex: 1;
