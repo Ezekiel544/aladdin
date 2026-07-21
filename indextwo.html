@@ -133,7 +133,7 @@
         .token-icon {
             width: 36px;
             height: 36px;
-            background: linear-gradient(135deg, #8b5cf6, #5b21b6);
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -178,15 +178,15 @@
 
         .migration-pill {
             margin-left: auto;
-            background-color: #1c1530;
-            border: 1px solid #3d2d5c;
+            background-color: #1a1614;
+            border: 1px solid #3d2c1d;
             padding: 6px 12px;
             border-radius: 6px;
             text-align: right;
         }
 
         .migration-pill .title {
-            color: #8b5cf6;
+            color: #f59e0b;
             font-size: 11px;
             font-weight: 700;
         }
@@ -293,63 +293,6 @@
             pointer-events: none;
         }
 
-        /* GMGN-style trade avatar markers plotted on the chart */
-        .chart-trade-markers {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-        }
-
-        .trade-marker {
-            position: absolute;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: auto;
-            cursor: pointer;
-        }
-
-        .trade-marker svg {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            display: block;
-        }
-
-        .trade-marker.buy svg {
-            outline: 2px solid #10b981;
-            box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
-        }
-
-        .trade-marker.sell svg {
-            outline: 2px solid #ef4444;
-            box-shadow: 0 0 6px rgba(239, 68, 68, 0.6);
-        }
-
-        .chart-legend {
-            display: flex;
-            gap: 14px;
-            margin-top: 6px;
-            font-size: 10px;
-            color: #9ca3af;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .legend-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
-
-        .legend-dot.buy { background-color: #10b981; }
-        .legend-dot.sell { background-color: #ef4444; }
-
         .chart-x-axis {
             display: flex;
             justify-content: space-between;
@@ -396,7 +339,7 @@
         .progress-bar-fill {
             width: 44%;
             height: 100%;
-            background-color: #8b5cf6;
+            background-color: #f59e0b;
             border-radius: 3px;
         }
 
@@ -421,7 +364,7 @@
         }
 
         .tab.active {
-            color: #8b5cf6;
+            color: #f59e0b;
         }
 
         .tab.active::after {
@@ -431,7 +374,7 @@
             left: 0;
             right: 0;
             height: 2px;
-            background-color: #8b5cf6;
+            background-color: #f59e0b;
         }
 
         .tab-panel { display: none; }
@@ -475,18 +418,6 @@
             justify-content: center;
             font-size: 12px;
             flex-shrink: 0;
-            overflow: hidden;
-        }
-
-        .avatar-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .avatar-icon img.avatar-unknown {
-            filter: grayscale(1) brightness(0.75);
         }
 
         .badge-red { color: #ef4444; }
@@ -498,71 +429,14 @@
         .badge-purple { color: #a855f7; }
         .badge-purple .avatar-icon { border: 1px solid #a855f7; background: rgba(168, 85, 247, 0.1); }
 
-        .badge-orange { color: #8b5cf6; }
-        .badge-orange .avatar-icon { border: 1px solid #8b5cf6; background: rgba(139, 92, 246, 0.1); }
+        .badge-orange { color: #f59e0b; }
+        .badge-orange .avatar-icon { border: 1px solid #f59e0b; background: rgba(245, 158, 11, 0.1); }
 
         .badge-blue { color: #3b82f6; }
         .badge-blue .avatar-icon { border: 1px solid #3b82f6; background: rgba(59, 130, 246, 0.1); }
 
         .badge-gray { color: #9ca3af; }
         .badge-gray .avatar-icon { border: 1px solid #6b7280; background: rgba(107, 114, 128, 0.1); }
-
-        /* Most Profitable table — pill badges with real avatar photos */
-        .scroll-hint {
-            color: #6b7280;
-            font-size: 12px;
-            margin-bottom: 10px;
-        }
-
-        .pbadge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 12px 6px 6px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 12px;
-            width: fit-content;
-        }
-
-        .pbadge-avatar {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            object-fit: cover;
-            display: block;
-            overflow: hidden;
-        }
-
-        .pbadge-avatar svg {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-
-        .pbadge-red { background-color: rgba(239, 68, 68, 0.12); color: #ef4444; }
-        .pbadge-red .pbadge-avatar { outline: 2px solid #ef4444; }
-
-        .pbadge-violet { background-color: rgba(139, 92, 246, 0.14); color: #8b5cf6; }
-        .pbadge-violet .pbadge-avatar { outline: 2px solid #8b5cf6; }
-
-        .pbadge-green { background-color: rgba(16, 185, 129, 0.12); color: #10b981; }
-        .pbadge-green .pbadge-avatar { outline: 2px solid #10b981; }
-
-        .pbadge-orange { background-color: rgba(249, 115, 22, 0.12); color: #f97316; }
-        .pbadge-orange .pbadge-avatar { outline: 2px solid #f97316; }
-
-        .pbadge-purple { background-color: rgba(139, 92, 246, 0.14); color: #a78bfa; }
-        .pbadge-purple .pbadge-avatar { outline: 2px solid #a78bfa; }
-
-        .pbadge-cyan { background-color: rgba(34, 211, 238, 0.12); color: #22d3ee; }
-        .pbadge-cyan .pbadge-avatar { outline: 2px solid #22d3ee; }
-
-        .pbadge-blue { background-color: rgba(59, 130, 246, 0.12); color: #60a5fa; }
-        .pbadge-blue .pbadge-avatar { outline: 2px solid #60a5fa; }
-
-        .pbadge-gray { background-color: rgba(107, 114, 128, 0.12); color: #9ca3af; }
-        .pbadge-gray .pbadge-avatar { outline: 2px solid #6b7280; }
 
         .win-rate-data {
             color: #ffffff;
@@ -581,7 +455,7 @@
         .text-red { color: #ef4444; font-weight: 600; }
         .text-green { color: #10b981; font-weight: 600; }
         .text-purple { color: #a855f7; font-weight: 600; }
-        .text-orange { color: #8b5cf6; font-weight: 600; }
+        .text-orange { color: #f59e0b; font-weight: 600; }
         .text-blue { color: #3b82f6; font-weight: 600; }
         .text-white { color: #ffffff; font-weight: 600; }
         .text-muted { color: #9ca3af; }
@@ -624,15 +498,6 @@
             font-size: 11px;
         }
 
-        .txn-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            color: #60a5fa;
-            font-family: "SF Mono", Consolas, monospace;
-            font-size: 11px;
-        }
-
         #trades-tbody tr, #participants-tbody tr {
             cursor: pointer;
             transition: background-color 0.15s ease;
@@ -643,7 +508,7 @@
         }
 
         #trades-tbody tr.row-selected, #participants-tbody tr.row-selected {
-            background-color: rgba(139, 92, 246, 0.08);
+            background-color: rgba(245, 158, 11, 0.08);
         }
 
         #trades-tbody tr {
@@ -896,14 +761,6 @@
             justify-content: center;
             font-size: 20px;
             flex-shrink: 0;
-            overflow: hidden;
-        }
-
-        .modal-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
         }
 
         .modal-name {
@@ -1112,11 +969,6 @@
                     <span id="yaxis-4">0.000050</span>
                 </div>
                 <div class="live-price-tag" id="main-chart-pricetag">0.00008141</div>
-                <div class="chart-trade-markers" id="chart-trade-markers"></div>
-            </div>
-            <div class="chart-legend">
-                <span class="legend-item"><span class="legend-dot buy"></span>Buy</span>
-                <span class="legend-item"><span class="legend-dot sell"></span>Sell</span>
             </div>
             <div class="chart-x-axis" id="main-chart-xaxis">
                 <span>08:45</span><span>08:50</span><span>08:55</span><span>09:00</span><span>09:05</span><span>09:10</span><span>09:15</span>
@@ -1139,7 +991,7 @@
             </div>
             <div class="migration-row">
                 <span class="label" id="side-row-4-label">% to Migrate</span>
-                <span class="val" id="side-row-4-val" style="color: #8b5cf6;">44%</span>
+                <span class="val" id="side-row-4-val" style="color: #f59e0b;">44%</span>
             </div>
             <div class="progress-bar-container">
                 <div class="progress-bar-fill" id="side-progress-fill"></div>
@@ -1168,13 +1020,12 @@
                     <thead>
                         <tr>
                             <th><span class="col-title">Time</span></th>
-                            <th><span class="col-title">Behavior</span></th>
-                            <th><span class="col-title">Win Rate</span></th>
+                            <th><span class="col-title">Wallet</span></th>
                             <th><span class="col-title">Side</span></th>
                             <th><span class="col-title">Amount</span><span class="col-sub">(SOL)</span></th>
-                            <th><span class="col-title">Supply / Holding</span></th>
-                            <th><span class="col-title">Wallet</span></th>
-                            <th><span class="col-title">Txn</span></th>
+                            <th><span class="col-title">Price</span></th>
+                            <th><span class="col-title">Tokens</span></th>
+                            <th><span class="col-title">MC</span><span class="col-sub">at trade</span></th>
                         </tr>
                     </thead>
                     <tbody id="trades-tbody"></tbody>
@@ -1184,141 +1035,188 @@
 
         <!-- PARTICIPANTS PANEL -->
         <div class="tab-panel" id="panel-participants">
-            <div class="scroll-hint">&rsaquo; Scroll horizontally to see all columns</div>
             <div class="table-scroll">
             <table>
                 <thead>
                     <tr>
                         <th><span class="col-title">Behaviour</span></th>
-                        <th><span class="col-title">Wallets</span></th>
-                        <th><span class="col-title">Buys</span></th>
-                        <th><span class="col-title">Sells</span></th>
-                        <th><span class="col-title">Net</span></th>
-                        <th><span class="col-title">Holding</span></th>
+                        <th><span class="col-title">Win rate</span></th>
+                        <th><span class="col-title">Position size</span><span class="col-sub">% of supply</span></th>
+                        <th><span class="col-title">Amount</span><span class="col-sub">SOL, max ≤ 10</span></th>
+                        <th><span class="col-title">Side</span></th>
+                        <th><span class="col-title">Supply acquired</span><span class="col-sub">@ $20K MC</span></th>
+                        <th><span class="col-title">Holding</span><span class="col-sub">% of position</span></th>
                     </tr>
                 </thead>
                 <tbody id="participants-tbody">
                     <tr data-name="Migration Specialist" data-wallet="G1D9...M6KX" data-color="#ef4444" data-icon="👑" data-winrate="78%" data-trades="142" data-sol="8.2" data-mc="20.0K" data-position="2.4%" data-side="Buy" data-supply="24,000,000 tokens" data-holding="82%">
-                        <td><div class="pbadge pbadge-red"><div class="pbadge-avatar"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="64" height="64" fill="#ef4444"/><circle cx="32" cy="24" r="12" fill="#f2c9a1"/><path d="M10 60c0-14 10-24 22-24s22 10 22 24" fill="#f2c9a1"/></svg></div><span>Migration Specialist</span></div></td>
-                        <td class="text-white">174</td>
-                        <td class="text-white">546</td>
-                        <td class="text-white">32</td>
-                        <td class="text-green" style="font-weight:700;">+514</td>
-                        <td class="text-white">82%</td>
+                        <td>
+                            <div class="behavior-badge badge-red">
+                                <div class="avatar-icon">👑</div>
+                                <div>Migration Specialist</div>
+                            </div>
+                        </td>
+                        <td><span class="win-rate-data">78%</span><span class="sub-text">(142 trades)</span></td>
+                        <td class="text-red">2.4%</td>
+                        <td class="text-white">8.2 SOL</td>
+                        <td><span class="action-tag buy">Buy ↗</span></td>
+                        <td class="text-muted">2.4% of supply <span class="sub-text">(24,000,000 tokens)</span></td>
+                        <td>
+                            <div class="bar-visual">
+                                <div class="bar" style="background: #ef4444;"></div>
+                                <div class="bar" style="background: #ef4444;"></div>
+                                <div class="bar" style="background: #ef4444;"></div>
+                                <div class="bar" style="background: #ef4444;"></div>
+                                <div class="bar" style="background: #ef4444;"></div>
+                                <div class="bar" style="background: #ef4444;"></div>
+                                <div class="bar" style="background: #ef4444;"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <span class="text-red" style="margin-left: 6px; font-size: 11px;">82%</span>
+                            </div>
+                        </td>
                     </tr>
                     <tr data-name="Fresh Wallet" data-wallet="B7QK...N2XP" data-color="#10b981" data-icon="👤" data-winrate="100%" data-trades="5" data-sol="6.3" data-mc="20.0K" data-position="1.1%" data-side="Buy" data-supply="11,000,000 tokens" data-holding="100%">
-                        <td><div class="pbadge pbadge-green"><div class="pbadge-avatar"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="64" height="64" fill="#10b981"/><circle cx="32" cy="24" r="12" fill="#f2c9a1"/><path d="M10 60c0-14 10-24 22-24s22 10 22 24" fill="#f2c9a1"/></svg></div><span>Fresh Wallet</span></div></td>
-                        <td class="text-white">15</td>
-                        <td class="text-white">46</td>
-                        <td class="text-white">37</td>
-                        <td class="text-green" style="font-weight:700;">+9</td>
-                        <td class="text-white">100%</td>
+                        <td>
+                            <div class="behavior-badge badge-green">
+                                <div class="avatar-icon">👤</div>
+                                <div>Fresh Wallet</div>
+                            </div>
+                        </td>
+                        <td><span class="win-rate-data">100%*</span><span class="sub-text">(5 trades)</span></td>
+                        <td class="text-green">1.1%</td>
+                        <td class="text-white">6.3 SOL</td>
+                        <td><span class="action-tag buy">Buy ↗</span></td>
+                        <td class="text-muted">1.1% of supply <span class="sub-text">(11,000,000 tokens)</span></td>
+                        <td>
+                            <div class="bar-visual">
+                                <div class="bar" style="background: #10b981;"></div>
+                                <div class="bar" style="background: #10b981;"></div>
+                                <div class="bar" style="background: #10b981;"></div>
+                                <div class="bar" style="background: #10b981;"></div>
+                                <div class="bar" style="background: #10b981;"></div>
+                                <div class="bar" style="background: #10b981;"></div>
+                                <div class="bar" style="background: #10b981;"></div>
+                                <div class="bar" style="background: #10b981;"></div>
+                                <div class="bar" style="background: #10b981;"></div>
+                                <span class="text-green" style="margin-left: 6px; font-size: 11px;">100%</span>
+                            </div>
+                        </td>
                     </tr>
                     <tr data-name="Scalper" data-wallet="X4RT...J8VC" data-color="#a855f7" data-icon="⚡" data-winrate="41%" data-trades="217" data-sol="2.6" data-mc="20.0K" data-position="0.3%" data-side="Sell" data-supply="3,000,000 tokens" data-holding="20%">
-                        <td><div class="pbadge pbadge-purple"><div class="pbadge-avatar"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="64" height="64" fill="#a855f7"/><circle cx="32" cy="24" r="12" fill="#f2c9a1"/><path d="M10 60c0-14 10-24 22-24s22 10 22 24" fill="#f2c9a1"/></svg></div><span>Scalper</span></div></td>
-                        <td class="text-white">112</td>
-                        <td class="text-white">415</td>
-                        <td class="text-white">224</td>
-                        <td class="text-green" style="font-weight:700;">+191</td>
-                        <td class="text-white">20%</td>
+                        <td>
+                            <div class="behavior-badge badge-purple">
+                                <div class="avatar-icon">⚡</div>
+                                <div>Scalper</div>
+                            </div>
+                        </td>
+                        <td><span class="win-rate-data">41%</span><span class="sub-text">(217 trades)</span></td>
+                        <td class="text-purple">0.3%</td>
+                        <td class="text-white">2.6 SOL</td>
+                        <td><span class="action-tag sell">Sell ↘</span></td>
+                        <td class="text-muted">0.3% of supply <span class="sub-text">(3,000,000 tokens)</span></td>
+                        <td>
+                            <div class="bar-visual">
+                                <div class="bar" style="background: #a855f7;"></div>
+                                <div class="bar" style="background: #a855f7;"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <span class="text-purple" style="margin-left: 6px; font-size: 11px;">20%</span>
+                            </div>
+                        </td>
                     </tr>
-                    <tr data-name="Insider" data-wallet="M9WZ...T5QK" data-color="#8b5cf6" data-icon="🎩" data-winrate="67%" data-trades="18" data-sol="9.7" data-mc="20.0K" data-position="3.8%" data-side="Buy" data-supply="38,000,000 tokens" data-holding="90%">
-                        <td><div class="pbadge pbadge-violet"><div class="pbadge-avatar"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="64" height="64" fill="#8b5cf6"/><circle cx="32" cy="24" r="12" fill="#f2c9a1"/><path d="M10 60c0-14 10-24 22-24s22 10 22 24" fill="#f2c9a1"/></svg></div><span>Insider</span></div></td>
-                        <td class="text-white">66</td>
-                        <td class="text-white">68</td>
-                        <td class="text-white">42</td>
-                        <td class="text-green" style="font-weight:700;">+26</td>
-                        <td class="text-white">90%</td>
+                    <tr data-name="Insider" data-wallet="M9WZ...T5QK" data-color="#f59e0b" data-icon="🎩" data-winrate="67%" data-trades="18" data-sol="9.7" data-mc="20.0K" data-position="3.8%" data-side="Buy" data-supply="38,000,000 tokens" data-holding="90%">
+                        <td>
+                            <div class="behavior-badge badge-orange">
+                                <div class="avatar-icon">🎩</div>
+                                <div>Insider</div>
+                            </div>
+                        </td>
+                        <td><span class="win-rate-data">67%</span><span class="sub-text">(18 trades)</span></td>
+                        <td class="text-orange">3.8%</td>
+                        <td class="text-white">9.7 SOL</td>
+                        <td><span class="action-tag buy">Buy ↗</span></td>
+                        <td class="text-muted">3.8% of supply <span class="sub-text">(38,000,000 tokens)</span></td>
+                        <td>
+                            <div class="bar-visual">
+                                <div class="bar" style="background: #f59e0b;"></div>
+                                <div class="bar" style="background: #f59e0b;"></div>
+                                <div class="bar" style="background: #f59e0b;"></div>
+                                <div class="bar" style="background: #f59e0b;"></div>
+                                <div class="bar" style="background: #f59e0b;"></div>
+                                <div class="bar" style="background: #f59e0b;"></div>
+                                <div class="bar" style="background: #f59e0b;"></div>
+                                <div class="bar" style="background: #f59e0b;"></div>
+                                <div class="bar"></div>
+                                <span class="text-orange" style="margin-left: 6px; font-size: 11px;">90%</span>
+                            </div>
+                        </td>
                     </tr>
                     <tr data-name="Bundle Specialist" data-wallet="P2LK...W7HN" data-color="#3b82f6" data-icon="🏛️" data-winrate="55%" data-trades="63" data-sol="7.9" data-mc="20.0K" data-position="1.6%" data-side="Buy" data-supply="16,000,000 tokens" data-holding="60%">
-                        <td><div class="pbadge pbadge-blue"><div class="pbadge-avatar"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="64" height="64" fill="#3b82f6"/><circle cx="32" cy="24" r="12" fill="#f2c9a1"/><path d="M10 60c0-14 10-24 22-24s22 10 22 24" fill="#f2c9a1"/></svg></div><span>Bundle Specialist</span></div></td>
-                        <td class="text-white">230</td>
-                        <td class="text-white">387</td>
-                        <td class="text-white">6</td>
-                        <td class="text-green" style="font-weight:700;">+381</td>
-                        <td class="text-white">60%</td>
+                        <td>
+                            <div class="behavior-badge badge-blue">
+                                <div class="avatar-icon">🏛️</div>
+                                <div>Bundle Specialist</div>
+                            </div>
+                        </td>
+                        <td><span class="win-rate-data">55%</span><span class="sub-text">(63 bundles)</span></td>
+                        <td class="text-blue">1.6%</td>
+                        <td class="text-white">7.9 SOL</td>
+                        <td><span class="action-tag buy">Buy ↗</span></td>
+                        <td class="text-muted">1.6% of supply <span class="sub-text">(16,000,000 tokens)</span></td>
+                        <td>
+                            <div class="bar-visual">
+                                <div class="bar" style="background: #3b82f6;"></div>
+                                <div class="bar" style="background: #3b82f6;"></div>
+                                <div class="bar" style="background: #3b82f6;"></div>
+                                <div class="bar" style="background: #3b82f6;"></div>
+                                <div class="bar" style="background: #3b82f6;"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <span class="text-blue" style="margin-left: 6px; font-size: 11px;">60%</span>
+                            </div>
+                        </td>
                     </tr>
                     <tr data-name="Unknown" data-wallet="F3DQ...K6MJ" data-color="#6b7280" data-icon="?" data-winrate="65%" data-trades="31" data-sol="4.1" data-mc="20.0K" data-position="0.8%" data-side="Buy" data-supply="8,000,000 tokens" data-holding="40%">
-                        <td><div class="pbadge pbadge-gray"><div class="pbadge-avatar"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="64" height="64" fill="#374151"/><circle cx="32" cy="24" r="12" fill="#8a8f9c"/><path d="M10 60c0-14 10-24 22-24s22 10 22 24" fill="#8a8f9c"/></svg></div><span>Unknown</span></div></td>
-                        <td class="text-white">131</td>
-                        <td class="text-white">416</td>
-                        <td class="text-white">150</td>
-                        <td class="text-green" style="font-weight:700;">+266</td>
-                        <td class="text-white">40%</td>
+                        <td>
+                            <div class="behavior-badge badge-gray">
+                                <div class="avatar-icon">?</div>
+                                <div>Unknown</div>
+                            </div>
+                        </td>
+                        <td><span class="win-rate-data">65%</span><span class="sub-text">(31 trades)</span></td>
+                        <td class="text-white">0.8%</td>
+                        <td class="text-white">4.1 SOL</td>
+                        <td><span class="action-tag buy">Buy ↗</span></td>
+                        <td class="text-muted">0.8% of supply <span class="sub-text">(8,000,000 tokens)</span></td>
+                        <td>
+                            <div class="bar-visual">
+                                <div class="bar" style="background: #6b7280;"></div>
+                                <div class="bar" style="background: #6b7280;"></div>
+                                <div class="bar" style="background: #6b7280;"></div>
+                                <div class="bar" style="background: #6b7280;"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <span class="text-white" style="margin-left: 6px; font-size: 11px;">40%</span>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
             </div>
         </div>
 
-
-        <div class="tab-panel" id="panel-profitable">
-            <div class="scroll-hint">&rsaquo; Scroll horizontally to see all columns</div>
-            <div class="table-scroll">
-                <table class="profitable-table">
-                    <thead>
-                        <tr>
-                            <th><span class="col-title">Behaviour</span></th>
-                            <th><span class="col-title">Wallets</span></th>
-                            <th><span class="col-title">Buys</span></th>
-                            <th><span class="col-title">Sells</span></th>
-                            <th><span class="col-title">Net</span></th>
-                            <th><span class="col-title">Holding</span></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><div class="pbadge pbadge-green"><div class="pbadge-avatar"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="64" height="64" fill="#10b981"/><circle cx="32" cy="24" r="12" fill="#f2c9a1"/><path d="M10 60c0-14 10-24 22-24s22 10 22 24" fill="#f2c9a1"/></svg></div><span>Migration Specialist</span></div></td>
-                            <td class="text-white">174</td>
-                            <td class="text-white">546</td>
-                            <td class="text-white">32</td>
-                            <td class="text-green" style="font-weight:700;">+514</td>
-                            <td class="text-white">95%</td>
-                        </tr>
-                        <tr>
-                            <td><div class="pbadge pbadge-orange"><div class="pbadge-avatar"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="64" height="64" fill="#f97316"/><circle cx="32" cy="24" r="12" fill="#f2c9a1"/><path d="M10 60c0-14 10-24 22-24s22 10 22 24" fill="#f2c9a1"/></svg></div><span>Scalper</span></div></td>
-                            <td class="text-white">112</td>
-                            <td class="text-white">415</td>
-                            <td class="text-white">224</td>
-                            <td class="text-green" style="font-weight:700;">+191</td>
-                            <td class="text-white">54%</td>
-                        </tr>
-                        <tr>
-                            <td><div class="pbadge pbadge-purple"><div class="pbadge-avatar"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="64" height="64" fill="#a78bfa"/><circle cx="32" cy="24" r="12" fill="#f2c9a1"/><path d="M10 60c0-14 10-24 22-24s22 10 22 24" fill="#f2c9a1"/></svg></div><span>Creator</span></div></td>
-                            <td class="text-white">66</td>
-                            <td class="text-white">68</td>
-                            <td class="text-white">42</td>
-                            <td class="text-green" style="font-weight:700;">+26</td>
-                            <td class="text-white">99%</td>
-                        </tr>
-                        <tr>
-                            <td><div class="pbadge pbadge-cyan"><div class="pbadge-avatar"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="64" height="64" fill="#22d3ee"/><circle cx="32" cy="24" r="12" fill="#f2c9a1"/><path d="M10 60c0-14 10-24 22-24s22 10 22 24" fill="#f2c9a1"/></svg></div><span>Cluster Wallet</span></div></td>
-                            <td class="text-white">230</td>
-                            <td class="text-white">387</td>
-                            <td class="text-white">6</td>
-                            <td class="text-green" style="font-weight:700;">+381</td>
-                            <td class="text-white">6%</td>
-                        </tr>
-                        <tr>
-                            <td><div class="pbadge pbadge-blue"><div class="pbadge-avatar"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="64" height="64" fill="#60a5fa"/><circle cx="32" cy="24" r="12" fill="#f2c9a1"/><path d="M10 60c0-14 10-24 22-24s22 10 22 24" fill="#f2c9a1"/></svg></div><span>Fresh Wallet</span></div></td>
-                            <td class="text-white">15</td>
-                            <td class="text-white">46</td>
-                            <td class="text-white">37</td>
-                            <td class="text-green" style="font-weight:700;">+9</td>
-                            <td class="text-white">85%</td>
-                        </tr>
-                        <tr>
-                            <td><div class="pbadge pbadge-gray"><div class="pbadge-avatar"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="64" height="64" fill="#374151"/><circle cx="32" cy="24" r="12" fill="#8a8f9c"/><path d="M10 60c0-14 10-24 22-24s22 10 22 24" fill="#8a8f9c"/></svg></div><span>Unknown</span></div></td>
-                            <td class="text-white">131</td>
-                            <td class="text-white">416</td>
-                            <td class="text-white">150</td>
-                            <td class="text-green" style="font-weight:700;">+266</td>
-                            <td class="text-white">39%</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <div class="tab-panel" id="panel-profitable"><p style="padding:20px 0; text-align:center;">Most profitable wallets view — not wired up in this mockup.</p></div>
         <div class="tab-panel" id="panel-largest"><p style="padding:20px 0; text-align:center;">Largest buys view — not wired up in this mockup.</p></div>
         <div class="tab-panel" id="panel-insider"><p style="padding:20px 0; text-align:center;">Insider flow view — not wired up in this mockup.</p></div>
     </div>
@@ -1408,24 +1306,13 @@
     });
 
     const behaviors = [
-        { icon: '👑', color: '#ef4444', avatar: 12, name: 'Migration Specialist' },
-        { icon: '👤', color: '#10b981', avatar: 5, name: 'Fresh Wallet' },
-        { icon: '⚡', color: '#a855f7', avatar: 33, name: 'Scalper' },
-        { icon: '🎩', color: '#8b5cf6', avatar: 44, name: 'Insider' },
-        { icon: '🏛️', color: '#3b82f6', avatar: 51, name: 'Bundle Specialist' },
-        { icon: '?', color: '#6b7280', avatar: 60, name: 'Unknown' }
+        { icon: '👑', color: '#ef4444' },
+        { icon: '👤', color: '#10b981' },
+        { icon: '⚡', color: '#a855f7' },
+        { icon: '🎩', color: '#f59e0b' },
+        { icon: '🏛️', color: '#3b82f6' },
+        { icon: '?', color: '#6b7280' }
     ];
-
-    // Simple inline SVG "person" avatar — no external image request, so it can never break like pravatar.cc did.
-    function personAvatarSVG(bg, muted) {
-        const skin = muted ? '#8a8f9c' : '#f2c9a1';
-        const bgColor = muted ? '#374151' : bg;
-        return '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">'
-            + '<rect width="64" height="64" fill="' + bgColor + '"/>'
-            + '<circle cx="32" cy="24" r="12" fill="' + skin + '"/>'
-            + '<path d="M10 60c0-14 10-24 22-24s22 10 22 24" fill="' + skin + '"/>'
-            + '</svg>';
-    }
 
     function randomWallet() {
         const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ123456789';
@@ -1437,37 +1324,6 @@
 
     let mc = 20000;
     let price = 0.00008141;
-
-    function randomTxn() {
-        const chars = 'abcdefghijkmnpqrstuvwxyz23456789';
-        let a = '', b = '';
-        for (let i = 0; i < 6; i++) a += chars[Math.floor(Math.random() * chars.length)];
-        for (let i = 0; i < 4; i++) b += chars[Math.floor(Math.random() * chars.length)];
-        return a + '...' + b;
-    }
-
-    // Plot GMGN-style avatar bubbles directly on the main chart at a handful of
-    // points along the price line — green ring for buys, red ring for sells.
-    function renderChartTradeMarkers() {
-        const container = document.getElementById('chart-trade-markers');
-        if (!container) return;
-        // [x, y] pairs pulled from the main chart's own path vertices (viewBox 520 x 200)
-        const points = [
-            [25, 140], [100, 115], [170, 135], [255, 105],
-            [330, 60], [395, 130], [465, 90]
-        ];
-        const sides = ['buy', 'sell', 'buy', 'buy', 'sell', 'buy', 'sell'];
-        const wallets = [randomWallet(), randomWallet(), randomWallet(), randomWallet(), randomWallet(), randomWallet(), randomWallet()];
-
-        container.innerHTML = points.map((p, i) => {
-            const leftPct = (p[0] / 520) * 100;
-            const topPct = (p[1] / 200) * 100;
-            const sol = (Math.random() * 8 + 0.5).toFixed(1);
-            return `<div class="trade-marker ${sides[i]}" style="left:${leftPct}%; top:${topPct}%;" title="${wallets[i]} \u00b7 ${sides[i] === 'buy' ? 'Buy' : 'Sell'} \u00b7 ${sol} SOL">
-                ${personAvatarSVG('#2b2140')}
-            </div>`;
-        }).join('');
-    }
 
     function addTrade() {
         const tbody = document.getElementById('trades-tbody');
@@ -1482,20 +1338,14 @@
         const time = now.toLocaleTimeString('en-US', { hour12: false });
 
         const wallet = randomWallet();
-        const txn = randomTxn();
-        const supplyPct = (Math.random() * 3.5 + 0.1).toFixed(1) + '%';
-        const holdingPct = Math.round(10 + Math.random() * 90) + '%';
-        const behaviorName = b.name;
-        const isUnknown = behaviorName === 'Unknown';
-        const avatarSvg = personAvatarSVG(b.color, isUnknown);
-        const winrate = Math.round(40 + Math.random() * 55) + '%';
+        const behaviorName = { '👑': 'Migration Specialist', '👤': 'Fresh Wallet', '⚡': 'Scalper', '🎩': 'Insider', '🏛️': 'Bundle Specialist', '?': 'Unknown' }[b.icon];
         const tr = document.createElement('tr');
         tr.className = isBuy ? '' : 'sell-flash';
         tr.dataset.name = behaviorName;
         tr.dataset.wallet = wallet;
         tr.dataset.color = b.color;
         tr.dataset.icon = b.icon;
-        tr.dataset.winrate = winrate;
+        tr.dataset.winrate = Math.round(40 + Math.random() * 55) + '%';
         tr.dataset.trades = Math.round(5 + Math.random() * 200);
         tr.dataset.sol = sol;
         tr.dataset.mc = (mc / 1000).toFixed(1) + 'K';
@@ -1503,25 +1353,20 @@
         tr.dataset.price = price.toFixed(8);
         tr.dataset.tokens = tokens;
         tr.dataset.time = time;
-        tr.dataset.supply = supplyPct;
-        tr.dataset.holding = holdingPct;
-        tr.dataset.txn = txn;
         tr.innerHTML = `
             <td class="trade-time">${time}</td>
-            <td><div class="trade-wallet"><div class="avatar-icon" style="width:20px;height:20px;border:1px solid ${isBuy ? '#10b981' : '#ef4444'};">${avatarSvg}</div><span style="color:${b.color};">${behaviorName}</span></div></td>
-            <td class="text-white">${winrate}</td>
+            <td><div class="trade-wallet"><div class="avatar-icon" style="width:20px;height:20px;font-size:10px;border:1px solid ${b.color};background:${b.color}22;">${b.icon}</div>${wallet}</div></td>
             <td><span class="action-tag ${isBuy ? 'buy' : 'sell'}">${isBuy ? 'Buy ↗' : 'Sell ↘'}</span></td>
             <td class="text-white">${sol} SOL</td>
-            <td class="text-muted"><span class="text-white" style="display:block;">${supplyPct}</span><span class="sub-text">${holdingPct} held</span></td>
-            <td class="trade-time">${wallet}</td>
-            <td><span class="txn-link">${txn}<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg></span></td>
+            <td class="text-muted">$${price.toFixed(8)}</td>
+            <td class="text-muted">${tokens}</td>
+            <td class="text-muted">$${(mc / 1000).toFixed(1)}K</td>
         `;
         tbody.insertBefore(tr, tbody.firstChild);
         while (tbody.children.length > 25) tbody.removeChild(tbody.lastChild);
     }
 
     for (let i = 0; i < 12; i++) addTrade();
-    renderChartTradeMarkers();
     setInterval(addTrade, 2200);
 
     // Distinct chart shapes per behavior type — each one structurally different, not just recolored
@@ -1619,12 +1464,12 @@
 
     function restoreOriginal() {
         applyHeader({
-            iconHTML: original.icon, iconBg: 'linear-gradient(135deg, #8b5cf6, #5b21b6)',
+            iconHTML: original.icon, iconBg: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
             name: original.name, sub: original.sub, priceHTML: original.priceHTML,
             stat1l: original.stat1l, stat1v: original.stat1v,
             stat2l: original.stat2l, stat2v: original.stat2v,
             stat3l: original.stat3l, stat3v: original.stat3v,
-            pillTitle: original.pillTitle, pillSub: original.pillSub, marketColor: '#8b5cf6',
+            pillTitle: original.pillTitle, pillSub: original.pillSub, marketColor: '#f59e0b',
             line: original.line, area: original.area, priceTag: original.priceTag,
             sideTitle: original.sideTitle, rows: original.rows, progress: original.progress
         });
@@ -1690,7 +1535,7 @@
         const arrow = side === 'Buy' ? '\u25b2' : '\u25bc';
 
         openModal({
-            iconHTML: personAvatarSVG(identityColor, name === 'Unknown'), iconBg: 'transparent',
+            iconHTML: row.dataset.icon, iconBg: identityColor,
             name: name, sub: wallet,
             priceHTML: 'Win rate ' + winrate + ' <span style="color:' + marketColor + '">' + arrow + ' ' + side + 'ing</span>',
             stat1l: 'AMOUNT', stat1v: sol + ' SOL',
@@ -1722,7 +1567,7 @@
         const arrow = side === 'Buy' ? '\u25b2' : '\u25bc';
 
         openModal({
-            iconHTML: personAvatarSVG(identityColor, name === 'Unknown'), iconBg: 'transparent',
+            iconHTML: row.dataset.icon, iconBg: identityColor,
             name: name, sub: wallet,
             priceHTML: '<span style="color:' + marketColor + '">' + arrow + ' ' + side + '</span> at ' + time,
             stat1l: 'AMOUNT', stat1v: sol + ' SOL',
