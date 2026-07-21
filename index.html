@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aladdin Terminal Recreation - Trades Tab</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0b0e14;
+            color: #9ca3af;
+            font-size: 13px;
+            padding: 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* Top Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #121620;
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: 1px solid #1f2937;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #ffffff;
+            font-weight: 800;
+            letter-spacing: 1px;
+            font-size: 15px;
+        }
+
+        .search-bar {
+            position: relative;
+            width: 350px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            background-color: #0b0e14;
+            border: 1px solid #1f2937;
+            border-radius: 6px;
+            padding: 6px 10px 6px 32px;
+            color: #d1d5db;
+            font-size: 12px;
+            outline: none;
+        }
+
+        .search-bar svg {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            fill: #6b7280;
+            width: 14px;
+            height: 14px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .live-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .live-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #10b981;
+        }
+
+        .wallet-btn {
+            background-color: #1a2234;
+            color: #38bdf8;
+            border: 1px solid #1e3a8a;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+        }
+
+        /* Token Header Info Bar */
+        .token-header {
+            background-color: #121620;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .token-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .token-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .token-titles h2 {
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .token-titles span {
+            color: #6b7280;
+            font-size: 11px;
+        }
+
+        .token-stats {
+            display: flex;
+            gap: 30px;
+            border-left: 1px solid #1f2937;
+            padding-left: 20px;
+        }
+
+        .stat-item .label {
+            font-size: 11px;
+            color: #6b7280;
+            margin-bottom: 2px;
+        }
+
+        .stat-item .value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .stat-item .value.green {
+            color: #10b981;
+            font-size: 12px;
+        }
+
+        .migration-pill {
+            margin-left: auto;
+            background-color: #1a1614;
+            border: 1px solid #3d2c1d;
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-align: right;
+        }
+
+        .migration-pill .title {
+            color: #f59e0b;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .migration-pill .sub {
+            color: #9ca3af;
+            font-size: 10px;
+        }
+
+        .token-price-block .value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .token-price-block .green {
+            color: #10b981;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Main Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 16px;
+        }
+
+        .card {
+            background-color: #121620;
+            border: 1px solid #1f2937;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        /* Chart Section */
+        .chart-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .time-btn {
+            background: none;
+            border: none;
+            color: #6b7280;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .time-btn.active {
+            background-color: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            font-weight: 600;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 230px;
+            width: 100%;
+        }
+
+        .chart-svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .chart-y-axis {
+            position: absolute;
+            right: 8px;
+            top: 0;
+            bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #9ca3af;
+            text-align: right;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .chart-y-axis span {
+            background-color: rgba(18, 22, 32, 0.88);
+            padding: 1px 4px;
+            border-radius: 3px;
+        }
+
+        .live-price-tag {
+            position: absolute;
+            right: 0;
+            top: 42%;
+            background-color: #ef4444;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 6px;
+            border-radius: 4px;
+            box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4);
+            pointer-events: none;
+        }
+
+        .chart-x-axis {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #4b5563;
+            margin-top: 4px;
+            padding-right: 60px;
+        }
+
+        /* Migration Projection Card */
+        .migration-card h3 {
+            color: #ffffff;
+            font-size: 13px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .migration-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 12px;
+        }
+
+        .migration-row .label {
+            color: #6b7280;
+        }
+
+        .migration-row .val {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .progress-bar-container {
+            background-color: #1f2937;
+            height: 6px;
+            border-radius: 3px;
+            margin: 16px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            width: 44%;
+            height: 100%;
+            background-color: #f59e0b;
+            border-radius: 3px;
+        }
+
+        /* Tabs */
+        .tabs-nav {
+            display: flex;
+            gap: 24px;
+            border-bottom: 1px solid #1f2937;
+            padding-bottom: 2px;
+            margin-bottom: 16px;
+        }
+
+        .tab {
+            background: none;
+            border: none;
+            color: #6b7280;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 8px 0;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tab.active {
+            color: #f59e0b;
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #f59e0b;
+        }
+
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+
+        /* Table Components */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            color: #6b7280;
+            font-size: 11px;
+            font-weight: 500;
+            padding-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 10px 0;
+            border-top: 1px solid #161b26;
+            font-size: 12px;
+            vertical-align: middle;
+        }
+
+        .behavior-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .avatar-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .badge-red { color: #ef4444; }
+        .badge-red .avatar-icon { border: 1px solid #ef4444; background: rgba(239, 68, 68, 0.1); }
+
+        .badge-green { color: #10b981; }
+        .badge-green .avatar-icon { border: 1px solid #10b981; background: rgba(16, 185, 129, 0.1); }
+
+        .badge-purple { color: #a855f7; }
+        .badge-purple .avatar-icon { border: 1px solid #a855f7; background: rgba(168, 85, 247, 0.1); }
+
+        .badge-orange { color: #f59e0b; }
+        .badge-orange .avatar-icon { border: 1px solid #f59e0b; background: rgba(245, 158, 11, 0.1); }
+
+        .badge-blue { color: #3b82f6; }
+        .badge-blue .avatar-icon { border: 1px solid #3b82f6; background: rgba(59, 130, 246, 0.1); }
+
+        .badge-gray { color: #9ca3af; }
+        .badge-gray .avatar-icon { border: 1px solid #6b7280; background: rgba(107, 114, 128, 0.1); }
+
+        .win-rate-data {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .sub-text {
+            display: block;
+            font-size: 10px;
+            color: #6b7280;
+            margin-top: 2px;
+            font-weight: 400;
+        }
+
+        .text-red { color: #ef4444; font-weight: 600; }
+        .text-green { color: #10b981; font-weight: 600; }
+        .text-purple { color: #a855f7; font-weight: 600; }
+        .text-orange { color: #f59e0b; font-weight: 600; }
+        .text-blue { color: #3b82f6; font-weight: 600; }
+        .text-white { color: #ffffff; font-weight: 600; }
+        .text-muted { color: #9ca3af; }
+
+        .action-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            font-weight: 600;
+        }
+
+        .action-tag.buy { color: #10b981; }
+        .action-tag.sell { color: #ef4444; }
+
+        .bar-visual {
+            display: inline-flex;
+            gap: 2px;
+            align-items: center;
+        }
+
+        .bar {
+            width: 5px;
+            height: 12px;
+            border-radius: 1px;
+            background-color: #1a2230;
+        }
+
+        /* Trades tab specific */
+        .trade-wallet {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: "SF Mono", Consolas, monospace;
+            font-size: 11px;
+        }
+
+        .trade-time {
+            color: #6b7280;
+            font-family: "SF Mono", Consolas, monospace;
+            font-size: 11px;
+        }
+
+        #trades-tbody tr, #participants-tbody tr {
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+        }
+
+        #trades-tbody tr:hover, #participants-tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        #trades-tbody tr.row-selected, #participants-tbody tr.row-selected {
+            background-color: rgba(245, 158, 11, 0.08);
+        }
+
+        #trades-tbody tr {
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { background-color: rgba(16, 185, 129, 0.12); }
+            to { background-color: transparent; }
+        }
+
+        #trades-tbody tr.sell-flash {
+            animation-name: fadeInSell;
+        }
+
+        @keyframes fadeInSell {
+            from { background-color: rgba(239, 68, 68, 0.12); }
+            to { background-color: transparent; }
+        }
+
+        /* Responsive table headers */
+        .table-scroll {
+            overflow-x: auto;
+        }
+
+        table {
+            min-width: 720px;
+        }
+
+        th {
+            white-space: nowrap;
+            padding-right: 16px;
+            vertical-align: top;
+        }
+
+        th .col-title {
+            display: block;
+            color: #9ca3af;
+        }
+
+        th .col-sub {
+            display: block;
+            font-size: 10px;
+            color: #4b5563;
+            text-transform: none;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        /* Responsive breakpoint — collapse to single column instead of squeezing the chart */
+        @media (max-width: 820px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            #main-omega-chart-card {
+                display: none;
+            }
+
+            .token-header {
+                display: grid;
+                grid-template-columns: 1fr auto;
+                align-items: center;
+                column-gap: 10px;
+                row-gap: 8px;
+                padding: 10px 12px;
+            }
+
+            .token-info {
+                grid-column: 1;
+                gap: 8px;
+            }
+
+            .token-icon {
+                width: 30px;
+                height: 30px;
+            }
+
+            .token-titles h2 {
+                font-size: 13px;
+            }
+
+            .token-titles span {
+                font-size: 10px;
+            }
+
+            .token-price-block {
+                grid-column: 2;
+                text-align: right;
+            }
+
+            .token-price-block .value {
+                font-size: 12px;
+            }
+
+            .token-price-block .green {
+                font-size: 11px;
+                display: block;
+            }
+
+            .token-stats {
+                grid-column: 1 / -1;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+                border-left: none;
+                border-top: 1px solid #1f2937;
+                padding: 8px 0 0 0;
+                margin: 0;
+            }
+
+            .stat-item .label {
+                font-size: 9px;
+            }
+
+            .stat-item .value {
+                font-size: 12px;
+            }
+
+            .migration-pill {
+                grid-column: 1 / -1;
+                margin-left: 0;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                text-align: left;
+                padding: 6px 10px;
+            }
+
+            .migration-pill .sub {
+                margin-left: 10px;
+            }
+
+            #back-to-token-btn {
+                grid-column: 1 / -1;
+                margin-left: 0 !important;
+                width: fit-content;
+            }
+
+            .chart-x-axis {
+                padding-right: 0;
+                font-size: 9px;
+            }
+
+            /* Trades/Participants tables get a fixed-height internal scroll on mobile
+               instead of growing the page indefinitely as new rows stream in. */
+            .table-scroll {
+                max-height: 440px;
+                overflow-y: auto;
+            }
+
+            thead th {
+                position: sticky;
+                top: 0;
+                background-color: #121620;
+                z-index: 1;
+            }
+
+            .search-bar {
+                width: auto;
+                flex: 1;
+                min-width: 0;
+            }
+
+            .navbar {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+        }
+
+        /* Detail modal — opens like its own page when a trade/wallet is tapped */
+        #detail-modal {
+            position: fixed;
+            inset: 0;
+            background-color: #0b0e14;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(100%);
+            transition: transform 0.28s ease;
+            overflow-y: auto;
+        }
+
+        #detail-modal.open {
+            transform: translateY(0);
+        }
+
+        .modal-topbar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-bottom: 1px solid #1f2937;
+            position: sticky;
+            top: 0;
+            background-color: #0b0e14;
+            z-index: 2;
+        }
+
+        .modal-back-btn {
+            background: none;
+            border: none;
+            color: #d1d5db;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px;
+            line-height: 1;
+        }
+
+        .modal-topbar-title {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .modal-body {
+            padding: 16px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding-bottom: 90px;
+        }
+
+        .modal-header-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .modal-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .modal-name {
+            color: #ffffff;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .modal-sub {
+            color: #6b7280;
+            font-size: 11px;
+            font-family: "SF Mono", Consolas, monospace;
+        }
+
+        .modal-price-line {
+            font-size: 13px;
+            color: #d1d5db;
+        }
+
+        .modal-stats-row {
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        .modal-stats-row .stat-item .label {
+            font-size: 10px;
+            color: #6b7280;
+            margin-bottom: 2px;
+        }
+
+        .modal-stats-row .stat-item .value {
+            font-size: 13px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .modal-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid #1f2937;
+            background-color: #121620;
+            width: fit-content;
+        }
+
+        .modal-badge .title {
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .modal-badge .sub {
+            font-size: 10px;
+            color: #6b7280;
+        }
+
+        .modal-chart-card, .modal-info-card {
+            background-color: #121620;
+            border: 1px solid #1f2937;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .modal-chart-wrapper {
+            position: relative;
+            height: 200px;
+            width: 100%;
+        }
+
+        .modal-info-card h3 {
+            color: #ffffff;
+            font-size: 13px;
+            margin-bottom: 14px;
+        }
+
+        .modal-info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 12px;
+        }
+
+        .modal-info-row .label {
+            color: #6b7280;
+        }
+
+        .modal-info-row .val {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .modal-actions {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            gap: 10px;
+            padding: 14px 16px;
+            background-color: #0b0e14;
+            border-top: 1px solid #1f2937;
+            z-index: 3;
+        }
+
+        .modal-action-btn {
+            flex: 1;
+            border: none;
+            border-radius: 8px;
+            padding: 13px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .modal-action-btn.buy {
+            background-color: #10b981;
+            color: #05130d;
+        }
+
+        .modal-action-btn.sell {
+            background-color: #ef4444;
+            color: #1a0505;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-logo">ALADDIN</div>
+        <div class="search-bar">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <input type="text" value="Search ticker, contract, wallet, tx..." readonly>
+        </div>
+        <div class="nav-right">
+            <div class="live-badge">
+                <div class="live-dot"></div>LIVE
+            </div>
+            <button class="wallet-btn">G1D9...M6KX</button>
+        </div>
+    </header>
+
+    <!-- Token Info Bar -->
+    <div class="token-header">
+        <div class="token-info">
+            <div class="token-icon" id="chart-context-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M6 12h12"/></svg>
+            </div>
+            <div class="token-titles">
+                <h2 id="chart-context-name">OMEGA</h2>
+                <span id="chart-context-sub">OmegaTur Network</span>
+            </div>
+        </div>
+        <div class="token-price-block" id="token-price-block">
+            <div class="value" id="chart-context-price">$0.00008141 <span class="green" id="chart-context-change">▲ 44.22%</span></div>
+        </div>
+        <div class="token-stats" id="chart-context-stats">
+            <div class="stat-item">
+                <div class="label" id="stat-1-label">MARKET CAP</div>
+                <div class="value" id="stat-1-value">$20.0K</div>
+            </div>
+            <div class="stat-item">
+                <div class="label" id="stat-2-label">LIQUIDITY</div>
+                <div class="value" id="stat-2-value">$10.0K</div>
+            </div>
+            <div class="stat-item">
+                <div class="label" id="stat-3-label">AGE</div>
+                <div class="value" id="stat-3-value">4m</div>
+            </div>
+        </div>
+        <div class="migration-pill" id="chart-context-badge">
+            <div class="title" id="chart-context-badge-title">44% TO MIGRATION</div>
+            <div class="sub" id="chart-context-badge-sub">Est. at $45K MC</div>
+        </div>
+        <button class="wallet-btn" id="back-to-token-btn" style="display:none; margin-left:8px;">&larr; OMEGA</button>
+    </div>
+
+    <!-- Dashboard Content Grid -->
+    <div class="dashboard-grid">
+        <div class="card" id="main-omega-chart-card">
+            <div class="chart-header">
+                <button class="time-btn">1m</button>
+                <button class="time-btn active">5m</button>
+                <button class="time-btn">15m</button>
+                <button class="time-btn">1H</button>
+                <button class="time-btn">4H</button>
+                <button class="time-btn">1D</button>
+            </div>
+            <div class="chart-wrapper">
+                <svg class="chart-svg" id="main-chart-svg" viewBox="0 0 520 200" preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="exactChartGradient" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#ef4444" stop-opacity="0.38"/>
+                            <stop offset="100%" stop-color="#ef4444" stop-opacity="0.0"/>
+                        </linearGradient>
+                    </defs>
+                    <path id="main-chart-area" d="M 0 150 L 25 140 L 45 165 L 75 130 L 100 115 L 125 145 L 145 120 L 170 135 L 195 95 L 215 130 L 235 100 L 255 105 L 285 75 L 305 110 L 330 60 L 355 60 L 375 125 L 395 130 L 420 50 L 445 110 L 465 90 L 490 60 L 510 95 L 510 200 L 0 200 Z" fill="url(#exactChartGradient)"/>
+                    <path id="main-chart-line" d="M 0 150 L 25 140 L 45 165 L 75 130 L 100 115 L 125 145 L 145 120 L 170 135 L 195 95 L 215 130 L 235 100 L 255 105 L 285 75 L 305 110 L 330 60 L 355 60 L 375 125 L 395 130 L 420 50 L 445 110 L 465 90 L 490 60 L 510 95" fill="none" stroke="#ef4444" stroke-width="2"/>
+                </svg>
+                <div class="chart-y-axis" id="main-chart-yaxis">
+                    <span id="yaxis-1">0.000090</span>
+                    <span id="yaxis-2">0.000070</span>
+                    <span id="yaxis-3">0.000060</span>
+                    <span id="yaxis-4">0.000050</span>
+                </div>
+                <div class="live-price-tag" id="main-chart-pricetag">0.00008141</div>
+            </div>
+            <div class="chart-x-axis" id="main-chart-xaxis">
+                <span>08:45</span><span>08:50</span><span>08:55</span><span>09:00</span><span>09:05</span><span>09:10</span><span>09:15</span>
+            </div>
+        </div>
+
+        <div class="card migration-card">
+            <h3 id="side-card-title">MIGRATION PROJECTION <span>ⓘ</span></h3>
+            <div class="migration-row">
+                <span class="label" id="side-row-1-label">Current MC</span>
+                <span class="val" id="side-row-1-val">$20.0K</span>
+            </div>
+            <div class="migration-row">
+                <span class="label" id="side-row-2-label">Liquidity</span>
+                <span class="val" id="side-row-2-val">$10.0K</span>
+            </div>
+            <div class="migration-row">
+                <span class="label" id="side-row-3-label">Target MC (Migration)</span>
+                <span class="val" id="side-row-3-val">$45,000</span>
+            </div>
+            <div class="migration-row">
+                <span class="label" id="side-row-4-label">% to Migrate</span>
+                <span class="val" id="side-row-4-val" style="color: #f59e0b;">44%</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="side-progress-fill"></div>
+            </div>
+            <div class="migration-row" style="margin-bottom: 0;">
+                <span class="label" id="side-row-5-label">Est. Time to Migrate</span>
+                <span class="val" id="side-row-5-val">~12–25m</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Section: Tabs -->
+    <div class="card">
+        <div class="tabs-nav">
+            <button class="tab active" data-tab="trades">TRADES</button>
+            <button class="tab" data-tab="participants">PARTICIPANTS</button>
+            <button class="tab" data-tab="profitable">MOST PROFITABLE</button>
+            <button class="tab" data-tab="largest">LARGEST BUYS</button>
+            <button class="tab" data-tab="insider">INSIDER FLOW</button>
+        </div>
+
+        <!-- TRADES PANEL -->
+        <div class="tab-panel active" id="panel-trades">
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th><span class="col-title">Time</span></th>
+                            <th><span class="col-title">Wallet</span></th>
+                            <th><span class="col-title">Side</span></th>
+                            <th><span class="col-title">Amount</span><span class="col-sub">(SOL)</span></th>
+                            <th><span class="col-title">Price</span></th>
+                            <th><span class="col-title">Tokens</span></th>
+                            <th><span class="col-title">MC</span><span class="col-sub">at trade</span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="trades-tbody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PARTICIPANTS PANEL -->
+        <div class="tab-panel" id="panel-participants">
+            <div class="table-scroll">
+            <table>
+                <thead>
+                    <tr>
+                        <th><span class="col-title">Behaviour</span></th>
+                        <th><span class="col-title">Win rate</span></th>
+                        <th><span class="col-title">Position size</span><span class="col-sub">% of supply</span></th>
+                        <th><span class="col-title">Amount</span><span class="col-sub">SOL, max ≤ 10</span></th>
+                        <th><span class="col-title">Side</span></th>
+                        <th><span class="col-title">Supply acquired</span><span class="col-sub">@ $20K MC</span></th>
+                        <th><span class="col-title">Holding</span><span class="col-sub">% of position</span></th>
+                    </tr>
+                </thead>
+                <tbody id="participants-tbody">
+                    <tr data-name="Migration Specialist" data-wallet="G1D9...M6KX" data-color="#ef4444" data-icon="👑" data-winrate="78%" data-trades="142" data-sol="8.2" data-mc="20.0K" data-position="2.4%" data-side="Buy" data-supply="24,000,000 tokens" data-holding="82%">
+                        <td>
+                            <div class="behavior-badge badge-red">
+                                <div class="avatar-icon">👑</div>
+                                <div>Migration Specialist</div>
+                            </div>
+                        </td>
+                        <td><span class="win-rate-data">78%</span><span class="sub-text">(142 trades)</span></td>
+                        <td class="text-red">2.4%</td>
+                        <td class="text-white">8.2 SOL</td>
+                        <td><span class="action-tag buy">Buy ↗</span></td>
+                        <td class="text-muted">2.4% of supply <span class="sub-text">(24,000,000 tokens)</span></td>
+                        <td>
+                            <div class="bar-visual">
+                                <div class="bar" style="background: #ef4444;"></div>
+                                <div class="bar" style="background: #ef4444;"></div>
+                                <div class="bar" style="background: #ef4444;"></div>
+                                <div class="bar" style="background: #ef4444;"></div>
+                                <div class="bar" style="background: #ef4444;"></div>
+                                <div class="bar" style="background: #ef4444;"></div>
+                                <div class="bar" style="background: #ef4444;"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <span class="text-red" style="margin-left: 6px; font-size: 11px;">82%</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr data-name="Fresh Wallet" data-wallet="B7QK...N2XP" data-color="#10b981" data-icon="👤" data-winrate="100%" data-trades="5" data-sol="6.3" data-mc="20.0K" data-position="1.1%" data-side="Buy" data-supply="11,000,000 tokens" data-holding="100%">
+                        <td>
+                            <div class="behavior-badge badge-green">
+                                <div class="avatar-icon">👤</div>
+                                <div>Fresh Wallet</div>
+                            </div>
+                        </td>
+                        <td><span class="win-rate-data">100%*</span><span class="sub-text">(5 trades)</span></td>
+                        <td class="text-green">1.1%</td>
+                        <td class="text-white">6.3 SOL</td>
+                        <td><span class="action-tag buy">Buy ↗</span></td>
+                        <td class="text-muted">1.1% of supply <span class="sub-text">(11,000,000 tokens)</span></td>
+                        <td>
+                            <div class="bar-visual">
+                                <div class="bar" style="background: #10b981;"></div>
+                                <div class="bar" style="background: #10b981;"></div>
+                                <div class="bar" style="background: #10b981;"></div>
+                                <div class="bar" style="background: #10b981;"></div>
+                                <div class="bar" style="background: #10b981;"></div>
+                                <div class="bar" style="background: #10b981;"></div>
+                                <div class="bar" style="background: #10b981;"></div>
+                                <div class="bar" style="background: #10b981;"></div>
+                                <div class="bar" style="background: #10b981;"></div>
+                                <span class="text-green" style="margin-left: 6px; font-size: 11px;">100%</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr data-name="Scalper" data-wallet="X4RT...J8VC" data-color="#a855f7" data-icon="⚡" data-winrate="41%" data-trades="217" data-sol="2.6" data-mc="20.0K" data-position="0.3%" data-side="Sell" data-supply="3,000,000 tokens" data-holding="20%">
+                        <td>
+                            <div class="behavior-badge badge-purple">
+                                <div class="avatar-icon">⚡</div>
+                                <div>Scalper</div>
+                            </div>
+                        </td>
+                        <td><span class="win-rate-data">41%</span><span class="sub-text">(217 trades)</span></td>
+                        <td class="text-purple">0.3%</td>
+                        <td class="text-white">2.6 SOL</td>
+                        <td><span class="action-tag sell">Sell ↘</span></td>
+                        <td class="text-muted">0.3% of supply <span class="sub-text">(3,000,000 tokens)</span></td>
+                        <td>
+                            <div class="bar-visual">
+                                <div class="bar" style="background: #a855f7;"></div>
+                                <div class="bar" style="background: #a855f7;"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <span class="text-purple" style="margin-left: 6px; font-size: 11px;">20%</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr data-name="Insider" data-wallet="M9WZ...T5QK" data-color="#f59e0b" data-icon="🎩" data-winrate="67%" data-trades="18" data-sol="9.7" data-mc="20.0K" data-position="3.8%" data-side="Buy" data-supply="38,000,000 tokens" data-holding="90%">
+                        <td>
+                            <div class="behavior-badge badge-orange">
+                                <div class="avatar-icon">🎩</div>
+                                <div>Insider</div>
+                            </div>
+                        </td>
+                        <td><span class="win-rate-data">67%</span><span class="sub-text">(18 trades)</span></td>
+                        <td class="text-orange">3.8%</td>
+                        <td class="text-white">9.7 SOL</td>
+                        <td><span class="action-tag buy">Buy ↗</span></td>
+                        <td class="text-muted">3.8% of supply <span class="sub-text">(38,000,000 tokens)</span></td>
+                        <td>
+                            <div class="bar-visual">
+                                <div class="bar" style="background: #f59e0b;"></div>
+                                <div class="bar" style="background: #f59e0b;"></div>
+                                <div class="bar" style="background: #f59e0b;"></div>
+                                <div class="bar" style="background: #f59e0b;"></div>
+                                <div class="bar" style="background: #f59e0b;"></div>
+                                <div class="bar" style="background: #f59e0b;"></div>
+                                <div class="bar" style="background: #f59e0b;"></div>
+                                <div class="bar" style="background: #f59e0b;"></div>
+                                <div class="bar"></div>
+                                <span class="text-orange" style="margin-left: 6px; font-size: 11px;">90%</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr data-name="Bundle Specialist" data-wallet="P2LK...W7HN" data-color="#3b82f6" data-icon="🏛️" data-winrate="55%" data-trades="63" data-sol="7.9" data-mc="20.0K" data-position="1.6%" data-side="Buy" data-supply="16,000,000 tokens" data-holding="60%">
+                        <td>
+                            <div class="behavior-badge badge-blue">
+                                <div class="avatar-icon">🏛️</div>
+                                <div>Bundle Specialist</div>
+                            </div>
+                        </td>
+                        <td><span class="win-rate-data">55%</span><span class="sub-text">(63 bundles)</span></td>
+                        <td class="text-blue">1.6%</td>
+                        <td class="text-white">7.9 SOL</td>
+                        <td><span class="action-tag buy">Buy ↗</span></td>
+                        <td class="text-muted">1.6% of supply <span class="sub-text">(16,000,000 tokens)</span></td>
+                        <td>
+                            <div class="bar-visual">
+                                <div class="bar" style="background: #3b82f6;"></div>
+                                <div class="bar" style="background: #3b82f6;"></div>
+                                <div class="bar" style="background: #3b82f6;"></div>
+                                <div class="bar" style="background: #3b82f6;"></div>
+                                <div class="bar" style="background: #3b82f6;"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <span class="text-blue" style="margin-left: 6px; font-size: 11px;">60%</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr data-name="Unknown" data-wallet="F3DQ...K6MJ" data-color="#6b7280" data-icon="?" data-winrate="65%" data-trades="31" data-sol="4.1" data-mc="20.0K" data-position="0.8%" data-side="Buy" data-supply="8,000,000 tokens" data-holding="40%">
+                        <td>
+                            <div class="behavior-badge badge-gray">
+                                <div class="avatar-icon">?</div>
+                                <div>Unknown</div>
+                            </div>
+                        </td>
+                        <td><span class="win-rate-data">65%</span><span class="sub-text">(31 trades)</span></td>
+                        <td class="text-white">0.8%</td>
+                        <td class="text-white">4.1 SOL</td>
+                        <td><span class="action-tag buy">Buy ↗</span></td>
+                        <td class="text-muted">0.8% of supply <span class="sub-text">(8,000,000 tokens)</span></td>
+                        <td>
+                            <div class="bar-visual">
+                                <div class="bar" style="background: #6b7280;"></div>
+                                <div class="bar" style="background: #6b7280;"></div>
+                                <div class="bar" style="background: #6b7280;"></div>
+                                <div class="bar" style="background: #6b7280;"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <span class="text-white" style="margin-left: 6px; font-size: 11px;">40%</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+
+        <div class="tab-panel" id="panel-profitable"><p style="padding:20px 0; text-align:center;">Most profitable wallets view — not wired up in this mockup.</p></div>
+        <div class="tab-panel" id="panel-largest"><p style="padding:20px 0; text-align:center;">Largest buys view — not wired up in this mockup.</p></div>
+        <div class="tab-panel" id="panel-insider"><p style="padding:20px 0; text-align:center;">Insider flow view — not wired up in this mockup.</p></div>
+    </div>
+</div>
+
+<!-- Detail modal — opens like its own page for a trade or wallet -->
+<div id="detail-modal">
+    <div class="modal-topbar">
+        <button class="modal-back-btn" id="modal-back-btn">&larr;</button>
+        <div class="modal-topbar-title" id="modal-topbar-title">Wallet</div>
+    </div>
+    <div class="modal-body">
+        <div class="modal-header-row">
+            <div class="modal-icon" id="modal-icon"></div>
+            <div>
+                <div class="modal-name" id="modal-name">Name</div>
+                <div class="modal-sub" id="modal-sub">wallet</div>
+            </div>
+        </div>
+        <div class="modal-price-line" id="modal-price-line"></div>
+        <div class="modal-stats-row">
+            <div class="stat-item">
+                <div class="label" id="modal-stat1-label">STAT</div>
+                <div class="value" id="modal-stat1-value">--</div>
+            </div>
+            <div class="stat-item">
+                <div class="label" id="modal-stat2-label">STAT</div>
+                <div class="value" id="modal-stat2-value">--</div>
+            </div>
+            <div class="stat-item">
+                <div class="label" id="modal-stat3-label">STAT</div>
+                <div class="value" id="modal-stat3-value">--</div>
+            </div>
+        </div>
+        <div class="modal-badge" id="modal-badge">
+            <div class="title" id="modal-badge-title">--</div>
+            <div class="sub" id="modal-badge-sub">--</div>
+        </div>
+
+        <div class="modal-chart-card">
+            <div class="modal-chart-wrapper">
+                <svg class="chart-svg" id="modal-chart-svg" viewBox="0 0 520 200" preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="modalChartGradient" x1="0" y1="0" x2="0" y2="1">
+                            <stop id="modal-grad-stop-1" offset="0%" stop-color="#ef4444" stop-opacity="0.38"/>
+                            <stop id="modal-grad-stop-2" offset="100%" stop-color="#ef4444" stop-opacity="0.0"/>
+                        </linearGradient>
+                    </defs>
+                    <path id="modal-chart-area" d="" fill="url(#modalChartGradient)"/>
+                    <path id="modal-chart-line" d="" fill="none" stroke="#ef4444" stroke-width="2"/>
+                </svg>
+                <div class="chart-y-axis" id="modal-chart-yaxis">
+                    <span>0.000090</span>
+                    <span>0.000070</span>
+                    <span>0.000060</span>
+                    <span>0.000050</span>
+                </div>
+                <div class="live-price-tag" id="modal-chart-pricetag">--</div>
+            </div>
+        </div>
+
+        <div class="modal-info-card">
+            <h3 id="modal-info-title">Detail</h3>
+            <div class="modal-info-row"><span class="label" id="modal-row-1-label">--</span><span class="val" id="modal-row-1-val">--</span></div>
+            <div class="modal-info-row"><span class="label" id="modal-row-2-label">--</span><span class="val" id="modal-row-2-val">--</span></div>
+            <div class="modal-info-row"><span class="label" id="modal-row-3-label">--</span><span class="val" id="modal-row-3-val">--</span></div>
+            <div class="modal-info-row"><span class="label" id="modal-row-4-label">--</span><span class="val" id="modal-row-4-val">--</span></div>
+            <div class="modal-info-row" style="margin-bottom:0;"><span class="label" id="modal-row-5-label">--</span><span class="val" id="modal-row-5-val">--</span></div>
+        </div>
+    </div>
+    <div class="modal-actions">
+        <button class="modal-action-btn buy" id="modal-buy-btn">Buy</button>
+        <button class="modal-action-btn sell" id="modal-sell-btn">Sell</button>
+    </div>
+</div>
+
+<script>
+(function() {
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    const behaviors = [
+        { icon: '👑', color: '#ef4444' },
+        { icon: '👤', color: '#10b981' },
+        { icon: '⚡', color: '#a855f7' },
+        { icon: '🎩', color: '#f59e0b' },
+        { icon: '🏛️', color: '#3b82f6' },
+        { icon: '?', color: '#6b7280' }
+    ];
+
+    function randomWallet() {
+        const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ123456789';
+        let a = '', b = '';
+        for (let i = 0; i < 4; i++) a += chars[Math.floor(Math.random() * chars.length)];
+        for (let i = 0; i < 4; i++) b += chars[Math.floor(Math.random() * chars.length)];
+        return a + '...' + b;
+    }
+
+    let mc = 20000;
+    let price = 0.00008141;
+
+    function addTrade() {
+        const tbody = document.getElementById('trades-tbody');
+        const isBuy = Math.random() > 0.4;
+        const b = behaviors[Math.floor(Math.random() * behaviors.length)];
+        const sol = (Math.random() * 9.5 + 0.5).toFixed(1);
+        const priceDelta = (Math.random() * 0.000004) * (isBuy ? 1 : -1);
+        price = Math.max(0.00003, price + priceDelta);
+        mc = Math.max(8000, mc + (isBuy ? 1 : -1) * (Math.random() * 800));
+        const tokens = Math.round(sol / price * 0.98).toLocaleString();
+        const now = new Date();
+        const time = now.toLocaleTimeString('en-US', { hour12: false });
+
+        const wallet = randomWallet();
+        const behaviorName = { '👑': 'Migration Specialist', '👤': 'Fresh Wallet', '⚡': 'Scalper', '🎩': 'Insider', '🏛️': 'Bundle Specialist', '?': 'Unknown' }[b.icon];
+        const tr = document.createElement('tr');
+        tr.className = isBuy ? '' : 'sell-flash';
+        tr.dataset.name = behaviorName;
+        tr.dataset.wallet = wallet;
+        tr.dataset.color = b.color;
+        tr.dataset.icon = b.icon;
+        tr.dataset.winrate = Math.round(40 + Math.random() * 55) + '%';
+        tr.dataset.trades = Math.round(5 + Math.random() * 200);
+        tr.dataset.sol = sol;
+        tr.dataset.mc = (mc / 1000).toFixed(1) + 'K';
+        tr.dataset.side = isBuy ? 'Buy' : 'Sell';
+        tr.dataset.price = price.toFixed(8);
+        tr.dataset.tokens = tokens;
+        tr.dataset.time = time;
+        tr.innerHTML = `
+            <td class="trade-time">${time}</td>
+            <td><div class="trade-wallet"><div class="avatar-icon" style="width:20px;height:20px;font-size:10px;border:1px solid ${b.color};background:${b.color}22;">${b.icon}</div>${wallet}</div></td>
+            <td><span class="action-tag ${isBuy ? 'buy' : 'sell'}">${isBuy ? 'Buy ↗' : 'Sell ↘'}</span></td>
+            <td class="text-white">${sol} SOL</td>
+            <td class="text-muted">$${price.toFixed(8)}</td>
+            <td class="text-muted">${tokens}</td>
+            <td class="text-muted">$${(mc / 1000).toFixed(1)}K</td>
+        `;
+        tbody.insertBefore(tr, tbody.firstChild);
+        while (tbody.children.length > 25) tbody.removeChild(tbody.lastChild);
+    }
+
+    for (let i = 0; i < 12; i++) addTrade();
+    setInterval(addTrade, 2200);
+
+    // Distinct chart shapes per behavior type — each one structurally different, not just recolored
+    // All shapes stay at y >= 48 so the line never crowds the top axis label, matching the reference chart's headroom.
+    const behaviorCharts = {
+        'Migration Specialist': 'M 0 165 L 70 145 L 140 125 L 210 108 L 280 95 L 350 78 L 420 65 L 480 55 L 510 50',
+        'Fresh Wallet': 'M 0 150 L 40 95 L 90 140 L 150 130 L 220 128 L 300 129 L 380 128 L 460 129 L 510 128',
+        'Scalper': 'M 0 80 L 30 130 L 60 90 L 90 140 L 120 100 L 150 150 L 180 110 L 210 155 L 240 120 L 270 160 L 300 125 L 330 165 L 360 130 L 390 170 L 420 135 L 450 172 L 480 140 L 510 175',
+        'Insider': 'M 0 170 L 50 155 L 90 115 L 130 80 L 170 60 L 220 52 L 280 58 L 340 50 L 400 56 L 460 49 L 510 53',
+        'Bundle Specialist': 'M 0 160 L 60 160 L 60 130 L 140 130 L 140 100 L 220 100 L 220 75 L 300 75 L 300 55 L 380 55 L 380 48 L 510 48',
+        'Unknown': 'M 0 110 L 40 100 L 80 120 L 120 105 L 160 115 L 200 100 L 240 118 L 280 108 L 320 112 L 360 102 L 400 116 L 440 106 L 480 114 L 510 108'
+    };
+
+    // Only these get per-wallet jitter — they're meant to look noisy already.
+    // Migration Specialist, Insider, Bundle Specialist stay exactly as authored so the trend line never sinks.
+    const noiseTolerant = { 'Scalper': true, 'Fresh Wallet': true, 'Unknown': true };
+
+    function jitterPath(pathD, seed, allowNoise) {
+        if (!allowNoise) return pathD;
+        let s = seed;
+        function rand() { s = (s * 9301 + 49297) % 233280; return s / 233280; }
+        let idx = -1;
+        return pathD.replace(/(-?\d+(\.\d+)?)\s+(-?\d+(\.\d+)?)/g, (m, x, x2, y) => {
+            idx++;
+            if (idx === 0) return x + ' ' + y;
+            const ny = Math.max(48, Math.min(180, parseFloat(y) + (rand() - 0.5) * 8));
+            return x + ' ' + ny.toFixed(1);
+        });
+    }
+
+    function seedFromString(str) {
+        let h = 0;
+        for (let i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) % 100000;
+        return h + 1;
+    }
+
+    // Snapshot the original OMEGA state so we can restore it exactly
+    const original = {
+        icon: document.getElementById('chart-context-icon').innerHTML,
+        name: 'OMEGA',
+        sub: 'OmegaTur Network',
+        priceHTML: document.getElementById('chart-context-price').innerHTML,
+        stat1l: 'MARKET CAP', stat1v: '$20.0K',
+        stat2l: 'LIQUIDITY', stat2v: '$10.0K',
+        stat3l: 'AGE', stat3v: '4m',
+        pillTitle: '44% TO MIGRATION', pillSub: 'Est. at $45K MC',
+        area: document.getElementById('main-chart-area').getAttribute('d'),
+        line: document.getElementById('main-chart-line').getAttribute('d'),
+        priceTag: '0.00008141',
+        sideTitle: 'MIGRATION PROJECTION',
+        rows: [
+            ['Current MC', '$20.0K'], ['Liquidity', '$10.0K'], ['Target MC (Migration)', '$45,000'],
+            ['% to Migrate', '44%'], ['Est. Time to Migrate', '~12–25m']
+        ],
+        progress: '44%'
+    };
+
+    function applyHeader(cfg) {
+        document.getElementById('chart-context-icon').innerHTML = cfg.iconHTML;
+        document.getElementById('chart-context-icon').style.background = cfg.iconBg;
+        document.getElementById('chart-context-name').textContent = cfg.name;
+        document.getElementById('chart-context-sub').textContent = cfg.sub;
+        document.getElementById('chart-context-price').innerHTML = cfg.priceHTML;
+        document.getElementById('stat-1-label').textContent = cfg.stat1l;
+        document.getElementById('stat-1-value').textContent = cfg.stat1v;
+        document.getElementById('stat-2-label').textContent = cfg.stat2l;
+        document.getElementById('stat-2-value').textContent = cfg.stat2v;
+        document.getElementById('stat-3-label').textContent = cfg.stat3l;
+        document.getElementById('stat-3-value').textContent = cfg.stat3v;
+        document.getElementById('chart-context-badge-title').textContent = cfg.pillTitle;
+        document.getElementById('chart-context-badge-title').style.color = cfg.marketColor;
+        document.getElementById('chart-context-badge-sub').textContent = cfg.pillSub;
+        document.getElementById('chart-context-badge').style.borderColor = cfg.marketColor + '55';
+
+        document.getElementById('main-chart-line').setAttribute('d', cfg.line);
+        document.getElementById('main-chart-line').setAttribute('stroke', cfg.marketColor);
+        document.getElementById('main-chart-area').setAttribute('d', cfg.area);
+        const gradStops = document.querySelectorAll('#exactChartGradient stop');
+        gradStops[0].setAttribute('stop-color', cfg.marketColor);
+        gradStops[1].setAttribute('stop-color', cfg.marketColor);
+        document.getElementById('main-chart-pricetag').textContent = cfg.priceTag;
+        document.getElementById('main-chart-pricetag').style.backgroundColor = cfg.marketColor;
+
+        document.getElementById('side-card-title').innerHTML = cfg.sideTitle + ' <span>\u24d8</span>';
+        for (let i = 0; i < 5; i++) {
+            document.getElementById('side-row-' + (i + 1) + '-label').textContent = cfg.rows[i][0];
+            document.getElementById('side-row-' + (i + 1) + '-val').textContent = cfg.rows[i][1];
+        }
+        document.getElementById('side-row-4-val').style.color = cfg.marketColor;
+        document.getElementById('side-progress-fill').style.width = cfg.progress;
+        document.getElementById('side-progress-fill').style.backgroundColor = cfg.marketColor;
+
+        document.getElementById('back-to-token-btn').style.display = 'inline-flex';
+    }
+
+    function restoreOriginal() {
+        applyHeader({
+            iconHTML: original.icon, iconBg: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
+            name: original.name, sub: original.sub, priceHTML: original.priceHTML,
+            stat1l: original.stat1l, stat1v: original.stat1v,
+            stat2l: original.stat2l, stat2v: original.stat2v,
+            stat3l: original.stat3l, stat3v: original.stat3v,
+            pillTitle: original.pillTitle, pillSub: original.pillSub, marketColor: '#f59e0b',
+            line: original.line, area: original.area, priceTag: original.priceTag,
+            sideTitle: original.sideTitle, rows: original.rows, progress: original.progress
+        });
+        document.getElementById('main-chart-area').setAttribute('fill', 'url(#exactChartGradient)');
+        document.getElementById('chart-context-badge').style.borderColor = '';
+        document.getElementById('back-to-token-btn').style.display = 'none';
+        document.querySelectorAll('#participants-tbody tr, #trades-tbody tr').forEach(r => r.classList.remove('row-selected'));
+    }
+
+    function openModal(cfg) {
+        document.getElementById('modal-topbar-title').textContent = cfg.name;
+        document.getElementById('modal-icon').innerHTML = cfg.iconHTML;
+        document.getElementById('modal-icon').style.background = cfg.iconBg;
+        document.getElementById('modal-name').textContent = cfg.name;
+        document.getElementById('modal-sub').textContent = cfg.sub;
+        document.getElementById('modal-price-line').innerHTML = cfg.priceHTML;
+
+        document.getElementById('modal-stat1-label').textContent = cfg.stat1l;
+        document.getElementById('modal-stat1-value').textContent = cfg.stat1v;
+        document.getElementById('modal-stat2-label').textContent = cfg.stat2l;
+        document.getElementById('modal-stat2-value').textContent = cfg.stat2v;
+        document.getElementById('modal-stat3-label').textContent = cfg.stat3l;
+        document.getElementById('modal-stat3-value').textContent = cfg.stat3v;
+
+        document.getElementById('modal-badge-title').textContent = cfg.pillTitle;
+        document.getElementById('modal-badge-title').style.color = cfg.marketColor;
+        document.getElementById('modal-badge-sub').textContent = cfg.pillSub;
+        document.getElementById('modal-badge').style.borderColor = cfg.marketColor + '55';
+
+        document.getElementById('modal-chart-line').setAttribute('d', cfg.line);
+        document.getElementById('modal-chart-line').setAttribute('stroke', cfg.marketColor);
+        document.getElementById('modal-chart-area').setAttribute('d', cfg.area);
+        document.getElementById('modal-grad-stop-1').setAttribute('stop-color', cfg.marketColor);
+        document.getElementById('modal-grad-stop-2').setAttribute('stop-color', cfg.marketColor);
+        document.getElementById('modal-chart-pricetag').textContent = cfg.priceTag;
+        document.getElementById('modal-chart-pricetag').style.backgroundColor = cfg.marketColor;
+
+        document.getElementById('modal-info-title').textContent = cfg.sideTitle;
+        for (let i = 0; i < 5; i++) {
+            document.getElementById('modal-row-' + (i + 1) + '-label').textContent = cfg.rows[i][0];
+            document.getElementById('modal-row-' + (i + 1) + '-val').textContent = cfg.rows[i][1];
+        }
+        document.getElementById('modal-row-4-val').style.color = cfg.marketColor;
+
+        document.getElementById('detail-modal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        document.getElementById('detail-modal').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    function showParticipant(row) {
+        const name = row.dataset.name, wallet = row.dataset.wallet, identityColor = row.dataset.color;
+        const winrate = row.dataset.winrate, trades = row.dataset.trades, sol = row.dataset.sol;
+        const position = row.dataset.position, side = row.dataset.side, supply = row.dataset.supply, holding = row.dataset.holding;
+        const marketColor = side === 'Buy' ? '#10b981' : '#ef4444';
+        const seed = seedFromString(wallet);
+        const base = behaviorCharts[name] || behaviorCharts['Unknown'];
+        const line = jitterPath(base, seed, !!noiseTolerant[name]);
+        const area = line + ' L 510 200 L 0 200 Z';
+        const arrow = side === 'Buy' ? '\u25b2' : '\u25bc';
+
+        openModal({
+            iconHTML: row.dataset.icon, iconBg: identityColor,
+            name: name, sub: wallet,
+            priceHTML: 'Win rate ' + winrate + ' <span style="color:' + marketColor + '">' + arrow + ' ' + side + 'ing</span>',
+            stat1l: 'AMOUNT', stat1v: sol + ' SOL',
+            stat2l: 'SUPPLY ACQUIRED', stat2v: supply.split(' ')[0],
+            stat3l: 'TRADES', stat3v: trades,
+            pillTitle: side.toUpperCase() + ' \u00b7 ' + position, pillSub: 'of supply',
+            marketColor: marketColor, line: line, area: area, priceTag: wallet,
+            sideTitle: 'WALLET BREAKDOWN',
+            rows: [
+                ['Win rate', winrate + ' (' + trades + ' trades)'],
+                ['Amount', sol + ' SOL'],
+                ['Position size', position],
+                ['Supply acquired', supply],
+                ['Holding', holding]
+            ],
+            progress: holding
+        });
+    }
+
+    function showTrade(row) {
+        const name = row.dataset.name, wallet = row.dataset.wallet, identityColor = row.dataset.color;
+        const side = row.dataset.side, sol = row.dataset.sol, price = row.dataset.price;
+        const tokens = row.dataset.tokens, mc = row.dataset.mc, time = row.dataset.time;
+        const marketColor = side === 'Buy' ? '#10b981' : '#ef4444';
+        const seed = seedFromString(wallet + time);
+        const base = behaviorCharts[name] || behaviorCharts['Unknown'];
+        const line = jitterPath(base, seed, !!noiseTolerant[name]);
+        const area = line + ' L 510 200 L 0 200 Z';
+        const arrow = side === 'Buy' ? '\u25b2' : '\u25bc';
+
+        openModal({
+            iconHTML: row.dataset.icon, iconBg: identityColor,
+            name: name, sub: wallet,
+            priceHTML: '<span style="color:' + marketColor + '">' + arrow + ' ' + side + '</span> at ' + time,
+            stat1l: 'AMOUNT', stat1v: sol + ' SOL',
+            stat2l: 'PRICE', stat2v: '$' + price,
+            stat3l: 'TOKENS', stat3v: tokens,
+            pillTitle: side.toUpperCase() + ' \u00b7 ' + sol + ' SOL', pillSub: 'MC $' + mc,
+            marketColor: marketColor, line: line, area: area, priceTag: '$' + price,
+            sideTitle: 'TRADE DETAIL',
+            rows: [
+                ['Wallet', wallet],
+                ['Behaviour', name],
+                ['Price', '$' + price],
+                ['Tokens', tokens],
+                ['MC at trade', '$' + mc]
+            ],
+            progress: Math.min(100, Math.round((parseFloat(sol) / 10) * 100)) + '%'
+        });
+    }
+
+    function wireRowClicks(tbodyId, handler) {
+        document.getElementById(tbodyId).addEventListener('click', (e) => {
+            const row = e.target.closest('tr');
+            if (!row || !row.dataset.wallet) return;
+            document.querySelectorAll('#participants-tbody tr, #trades-tbody tr').forEach(r => r.classList.remove('row-selected'));
+            row.classList.add('row-selected');
+            handler(row);
+        });
+    }
+
+    wireRowClicks('participants-tbody', showParticipant);
+    wireRowClicks('trades-tbody', showTrade);
+
+    document.getElementById('modal-back-btn').addEventListener('click', closeModal);
+    document.getElementById('modal-buy-btn').addEventListener('click', () => {
+        alert('Buy flow is not wired up in this mockup.');
+    });
+    document.getElementById('modal-sell-btn').addEventListener('click', () => {
+        alert('Sell flow is not wired up in this mockup.');
+    });
+})();
+</script>
+
+</body>
+</html>
