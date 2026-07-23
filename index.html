@@ -359,47 +359,6 @@
             padding-right: 60px;
         }
 
-        /* Migration Projection Card */
-        .migration-card h3 {
-            color: #ffffff;
-            font-size: 13px;
-            margin-bottom: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .migration-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            font-size: 12px;
-        }
-
-        .migration-row .label {
-            color: #6b7280;
-        }
-
-        .migration-row .val {
-            color: #ffffff;
-            font-weight: 600;
-        }
-
-        .progress-bar-container {
-            background-color: #1f2937;
-            height: 6px;
-            border-radius: 3px;
-            margin: 16px 0;
-            overflow: hidden;
-        }
-
-        .progress-bar-fill {
-            width: 44%;
-            height: 100%;
-            background-color: #8b5cf6;
-            border-radius: 3px;
-        }
-
         /* Tabs */
         .tabs-nav {
             display: flex;
@@ -830,193 +789,124 @@
             }
         }
 
-        /* Detail modal — opens like its own page when a trade/wallet is tapped */
-        #detail-modal {
-            position: fixed;
-            inset: 0;
-            background-color: #0b0e14;
-            z-index: 1000;
+        /* Inline detail panel — replaces the Migration Projection card slot.
+           Clicking a trade/wallet updates this panel in place instead of opening a separate page. */
+        .inline-detail-card {
             display: flex;
             flex-direction: column;
-            transform: translateY(100%);
-            transition: transform 0.28s ease;
-            overflow-y: auto;
+            min-height: 0;
         }
 
-        #detail-modal.open {
-            transform: translateY(0);
-        }
-
-        .modal-topbar {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 16px;
-            border-bottom: 1px solid #1f2937;
-            position: sticky;
-            top: 0;
-            background-color: #0b0e14;
-            z-index: 2;
-        }
-
-        .modal-back-btn {
-            background: none;
-            border: none;
-            color: #d1d5db;
-            font-size: 18px;
-            cursor: pointer;
-            padding: 4px;
-            line-height: 1;
-        }
-
-        .modal-topbar-title {
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .modal-body {
-            padding: 16px;
+        .inline-detail-empty {
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            padding-bottom: 90px;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 40px 16px;
+            color: #6b7280;
+            font-size: 12px;
+            text-align: center;
         }
 
-        .modal-header-row {
+        .inline-detail-empty svg {
+            opacity: 0.6;
+        }
+
+        .inline-detail-header {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            margin-bottom: 10px;
         }
 
-        .modal-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
+        .inline-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 9px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
             flex-shrink: 0;
             overflow: hidden;
         }
 
-        .modal-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .modal-name {
+        .inline-name-block .inline-name {
             color: #ffffff;
-            font-size: 17px;
+            font-size: 13px;
             font-weight: 700;
         }
 
-        .modal-sub {
+        .inline-name-block .inline-sub {
             color: #6b7280;
-            font-size: 11px;
+            font-size: 10px;
             font-family: "SF Mono", Consolas, monospace;
         }
 
-        .modal-price-line {
-            font-size: 13px;
+        .inline-price-line {
+            font-size: 11px;
             color: #d1d5db;
+            margin-bottom: 10px;
         }
 
-        .modal-stats-row {
+        .inline-stats-row {
             display: flex;
-            gap: 22px;
+            gap: 16px;
+            margin-bottom: 10px;
             flex-wrap: wrap;
         }
 
-        .modal-stats-row .stat-item .label {
-            font-size: 10px;
+        .inline-stats-row .stat-item .label {
+            font-size: 9px;
             color: #6b7280;
             margin-bottom: 2px;
         }
 
-        .modal-stats-row .stat-item .value {
-            font-size: 13px;
+        .inline-stats-row .stat-item .value {
+            font-size: 12px;
             font-weight: 600;
             color: #ffffff;
         }
 
-        .modal-badge {
+        .inline-badge {
             display: inline-block;
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 6px;
             border: 1px solid #1f2937;
-            background-color: #121620;
+            background-color: #17122a;
             width: fit-content;
+            margin-bottom: 10px;
         }
 
-        .modal-badge .title {
-            font-size: 12px;
+        .inline-badge .title {
+            font-size: 11px;
             font-weight: 700;
         }
 
-        .modal-badge .sub {
-            font-size: 10px;
+        .inline-badge .sub {
+            font-size: 9px;
             color: #6b7280;
         }
 
-        .modal-chart-card, .modal-info-card {
-            background-color: #121620;
-            border: 1px solid #1f2937;
-            border-radius: 8px;
-            padding: 16px;
-        }
-
-        .modal-chart-wrapper {
+        .inline-chart-wrapper {
             position: relative;
-            height: 200px;
+            height: 130px;
             width: 100%;
-        }
-
-        .modal-info-card h3 {
-            color: #ffffff;
-            font-size: 13px;
-            margin-bottom: 14px;
-        }
-
-        .modal-info-row {
-            display: flex;
-            justify-content: space-between;
             margin-bottom: 12px;
-            font-size: 12px;
         }
 
-        .modal-info-row .label {
-            color: #6b7280;
-        }
-
-        .modal-info-row .val {
-            color: #ffffff;
-            font-weight: 600;
-        }
-
-        .modal-actions {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
+        .inline-actions {
             display: flex;
-            gap: 10px;
-            padding: 14px 16px;
-            background-color: #0b0e14;
-            border-top: 1px solid #1f2937;
-            z-index: 3;
+            gap: 8px;
         }
 
         .modal-action-btn {
             flex: 1;
             border: none;
             border-radius: 8px;
-            padding: 13px;
-            font-size: 14px;
+            padding: 10px;
+            font-size: 13px;
             font-weight: 700;
             cursor: pointer;
         }
@@ -1126,30 +1016,55 @@
             </div>
         </div>
 
-        <div class="card migration-card">
-            <h3 id="side-card-title">MIGRATION PROJECTION <span>ⓘ</span></h3>
-            <div class="migration-row">
-                <span class="label" id="side-row-1-label">Current MC</span>
-                <span class="val" id="side-row-1-val">$20.0K</span>
+        <div class="card inline-detail-card" id="inline-detail-card">
+            <div class="inline-detail-empty" id="inline-detail-empty">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.1-2.8-2.8L7 14"/></svg>
+                <span>Tap a trade or wallet to view it here</span>
             </div>
-            <div class="migration-row">
-                <span class="label" id="side-row-2-label">Liquidity</span>
-                <span class="val" id="side-row-2-val">$10.0K</span>
-            </div>
-            <div class="migration-row">
-                <span class="label" id="side-row-3-label">Target MC (Migration)</span>
-                <span class="val" id="side-row-3-val">$45,000</span>
-            </div>
-            <div class="migration-row">
-                <span class="label" id="side-row-4-label">% to Migrate</span>
-                <span class="val" id="side-row-4-val" style="color: #8b5cf6;">44%</span>
-            </div>
-            <div class="progress-bar-container">
-                <div class="progress-bar-fill" id="side-progress-fill"></div>
-            </div>
-            <div class="migration-row" style="margin-bottom: 0;">
-                <span class="label" id="side-row-5-label">Est. Time to Migrate</span>
-                <span class="val" id="side-row-5-val">~12–25m</span>
+            <div id="inline-detail-content" style="display:none;">
+                <div class="inline-detail-header">
+                    <div class="inline-icon" id="inline-icon"></div>
+                    <div class="inline-name-block">
+                        <div class="inline-name" id="inline-name">Name</div>
+                        <div class="inline-sub" id="inline-sub">wallet</div>
+                    </div>
+                </div>
+                <div class="inline-price-line" id="inline-price-line"></div>
+                <div class="inline-stats-row">
+                    <div class="stat-item">
+                        <div class="label" id="inline-stat1-label">STAT</div>
+                        <div class="value" id="inline-stat1-value">--</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="label" id="inline-stat2-label">STAT</div>
+                        <div class="value" id="inline-stat2-value">--</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="label" id="inline-stat3-label">STAT</div>
+                        <div class="value" id="inline-stat3-value">--</div>
+                    </div>
+                </div>
+                <div class="inline-badge" id="inline-badge">
+                    <div class="title" id="inline-badge-title">--</div>
+                    <div class="sub" id="inline-badge-sub">--</div>
+                </div>
+                <div class="inline-chart-wrapper">
+                    <svg class="chart-svg" id="inline-chart-svg" viewBox="0 0 520 200" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="inlineChartGradient" x1="0" y1="0" x2="0" y2="1">
+                                <stop id="inline-grad-stop-1" offset="0%" stop-color="#ef4444" stop-opacity="0.38"/>
+                                <stop id="inline-grad-stop-2" offset="100%" stop-color="#ef4444" stop-opacity="0.0"/>
+                            </linearGradient>
+                        </defs>
+                        <path id="inline-chart-area" d="" fill="url(#inlineChartGradient)"/>
+                        <path id="inline-chart-line" d="" fill="none" stroke="#ef4444" stroke-width="2"/>
+                    </svg>
+                    <div class="live-price-tag" id="inline-chart-pricetag" style="top: 8%;">--</div>
+                </div>
+                <div class="inline-actions">
+                    <button class="modal-action-btn buy" id="inline-buy-btn">Buy</button>
+                    <button class="modal-action-btn sell" id="inline-sell-btn">Sell</button>
+                </div>
             </div>
         </div>
     </div>
@@ -1323,77 +1238,6 @@
         </div>
         <div class="tab-panel" id="panel-largest"><p style="padding:20px 0; text-align:center;">Largest buys view — not wired up in this mockup.</p></div>
         <div class="tab-panel" id="panel-insider"><p style="padding:20px 0; text-align:center;">Insider flow view — not wired up in this mockup.</p></div>
-    </div>
-</div>
-
-<!-- Detail modal — opens like its own page for a trade or wallet -->
-<div id="detail-modal">
-    <div class="modal-topbar">
-        <button class="modal-back-btn" id="modal-back-btn">&larr;</button>
-        <div class="modal-topbar-title" id="modal-topbar-title">Wallet</div>
-    </div>
-    <div class="modal-body">
-        <div class="modal-header-row">
-            <div class="modal-icon" id="modal-icon"></div>
-            <div>
-                <div class="modal-name" id="modal-name">Name</div>
-                <div class="modal-sub" id="modal-sub">wallet</div>
-            </div>
-        </div>
-        <div class="modal-price-line" id="modal-price-line"></div>
-        <div class="modal-stats-row">
-            <div class="stat-item">
-                <div class="label" id="modal-stat1-label">STAT</div>
-                <div class="value" id="modal-stat1-value">--</div>
-            </div>
-            <div class="stat-item">
-                <div class="label" id="modal-stat2-label">STAT</div>
-                <div class="value" id="modal-stat2-value">--</div>
-            </div>
-            <div class="stat-item">
-                <div class="label" id="modal-stat3-label">STAT</div>
-                <div class="value" id="modal-stat3-value">--</div>
-            </div>
-        </div>
-        <div class="modal-badge" id="modal-badge">
-            <div class="title" id="modal-badge-title">--</div>
-            <div class="sub" id="modal-badge-sub">--</div>
-        </div>
-
-        <div class="modal-chart-card">
-            <div class="modal-chart-wrapper">
-                <svg class="chart-svg" id="modal-chart-svg" viewBox="0 0 520 200" preserveAspectRatio="none">
-                    <defs>
-                        <linearGradient id="modalChartGradient" x1="0" y1="0" x2="0" y2="1">
-                            <stop id="modal-grad-stop-1" offset="0%" stop-color="#ef4444" stop-opacity="0.38"/>
-                            <stop id="modal-grad-stop-2" offset="100%" stop-color="#ef4444" stop-opacity="0.0"/>
-                        </linearGradient>
-                    </defs>
-                    <path id="modal-chart-area" d="" fill="url(#modalChartGradient)"/>
-                    <path id="modal-chart-line" d="" fill="none" stroke="#ef4444" stroke-width="2"/>
-                </svg>
-                <div class="chart-y-axis" id="modal-chart-yaxis">
-                    <span>0.000090</span>
-                    <span>0.000070</span>
-                    <span>0.000060</span>
-                    <span>0.000050</span>
-                </div>
-                <div class="live-price-tag" id="modal-chart-pricetag">--</div>
-            </div>
-        </div>
-
-        <div class="modal-info-card">
-            <h3 id="modal-info-title">Detail</h3>
-            <div class="modal-info-row"><span class="label" id="modal-row-1-label">--</span><span class="val" id="modal-row-1-val">--</span></div>
-            <div class="modal-info-row"><span class="label" id="modal-row-2-label">--</span><span class="val" id="modal-row-2-val">--</span></div>
-            <div class="modal-info-row"><span class="label" id="modal-row-3-label">--</span><span class="val" id="modal-row-3-val">--</span></div>
-            <div class="modal-info-row"><span class="label" id="modal-row-4-label">--</span><span class="val" id="modal-row-4-val">--</span></div>
-            <div class="modal-info-row" style="margin-bottom:0;"><span class="label" id="modal-row-5-label">--</span><span class="val" id="modal-row-5-val">--</span></div>
-        </div>
-    </div>
-    <div class="modal-actions">
-        <button class="modal-action-btn buy" id="modal-buy-btn">Buy</button>
-        <button class="modal-action-btn sell" id="modal-sell-btn">Sell</button>
     </div>
 </div>
 
@@ -1636,48 +1480,35 @@
         document.querySelectorAll('#participants-tbody tr, #trades-tbody tr').forEach(r => r.classList.remove('row-selected'));
     }
 
-    function openModal(cfg) {
-        document.getElementById('modal-topbar-title').textContent = cfg.name;
-        document.getElementById('modal-icon').innerHTML = cfg.iconHTML;
-        document.getElementById('modal-icon').style.background = cfg.iconBg;
-        document.getElementById('modal-name').textContent = cfg.name;
-        document.getElementById('modal-sub').textContent = cfg.sub;
-        document.getElementById('modal-price-line').innerHTML = cfg.priceHTML;
+    function renderInlinePanel(cfg) {
+        document.getElementById('inline-detail-empty').style.display = 'none';
+        document.getElementById('inline-detail-content').style.display = 'block';
 
-        document.getElementById('modal-stat1-label').textContent = cfg.stat1l;
-        document.getElementById('modal-stat1-value').textContent = cfg.stat1v;
-        document.getElementById('modal-stat2-label').textContent = cfg.stat2l;
-        document.getElementById('modal-stat2-value').textContent = cfg.stat2v;
-        document.getElementById('modal-stat3-label').textContent = cfg.stat3l;
-        document.getElementById('modal-stat3-value').textContent = cfg.stat3v;
+        document.getElementById('inline-icon').innerHTML = cfg.iconHTML;
+        document.getElementById('inline-icon').style.background = cfg.iconBg;
+        document.getElementById('inline-name').textContent = cfg.name;
+        document.getElementById('inline-sub').textContent = cfg.sub;
+        document.getElementById('inline-price-line').innerHTML = cfg.priceHTML;
 
-        document.getElementById('modal-badge-title').textContent = cfg.pillTitle;
-        document.getElementById('modal-badge-title').style.color = cfg.marketColor;
-        document.getElementById('modal-badge-sub').textContent = cfg.pillSub;
-        document.getElementById('modal-badge').style.borderColor = cfg.marketColor + '55';
+        document.getElementById('inline-stat1-label').textContent = cfg.stat1l;
+        document.getElementById('inline-stat1-value').textContent = cfg.stat1v;
+        document.getElementById('inline-stat2-label').textContent = cfg.stat2l;
+        document.getElementById('inline-stat2-value').textContent = cfg.stat2v;
+        document.getElementById('inline-stat3-label').textContent = cfg.stat3l;
+        document.getElementById('inline-stat3-value').textContent = cfg.stat3v;
 
-        document.getElementById('modal-chart-line').setAttribute('d', cfg.line);
-        document.getElementById('modal-chart-line').setAttribute('stroke', cfg.marketColor);
-        document.getElementById('modal-chart-area').setAttribute('d', cfg.area);
-        document.getElementById('modal-grad-stop-1').setAttribute('stop-color', cfg.marketColor);
-        document.getElementById('modal-grad-stop-2').setAttribute('stop-color', cfg.marketColor);
-        document.getElementById('modal-chart-pricetag').textContent = cfg.priceTag;
-        document.getElementById('modal-chart-pricetag').style.backgroundColor = cfg.marketColor;
+        document.getElementById('inline-badge-title').textContent = cfg.pillTitle;
+        document.getElementById('inline-badge-title').style.color = cfg.marketColor;
+        document.getElementById('inline-badge-sub').textContent = cfg.pillSub;
+        document.getElementById('inline-badge').style.borderColor = cfg.marketColor + '55';
 
-        document.getElementById('modal-info-title').textContent = cfg.sideTitle;
-        for (let i = 0; i < 5; i++) {
-            document.getElementById('modal-row-' + (i + 1) + '-label').textContent = cfg.rows[i][0];
-            document.getElementById('modal-row-' + (i + 1) + '-val').textContent = cfg.rows[i][1];
-        }
-        document.getElementById('modal-row-4-val').style.color = cfg.marketColor;
-
-        document.getElementById('detail-modal').classList.add('open');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-        document.getElementById('detail-modal').classList.remove('open');
-        document.body.style.overflow = '';
+        document.getElementById('inline-chart-line').setAttribute('d', cfg.line);
+        document.getElementById('inline-chart-line').setAttribute('stroke', cfg.marketColor);
+        document.getElementById('inline-chart-area').setAttribute('d', cfg.area);
+        document.getElementById('inline-grad-stop-1').setAttribute('stop-color', cfg.marketColor);
+        document.getElementById('inline-grad-stop-2').setAttribute('stop-color', cfg.marketColor);
+        document.getElementById('inline-chart-pricetag').textContent = cfg.priceTag;
+        document.getElementById('inline-chart-pricetag').style.backgroundColor = cfg.marketColor;
     }
 
     function showParticipant(row) {
@@ -1691,7 +1522,7 @@
         const area = line + ' L 510 200 L 0 200 Z';
         const arrow = side === 'Buy' ? '\u25b2' : '\u25bc';
 
-        openModal({
+        renderInlinePanel({
             iconHTML: personAvatarSVG(identityColor, name === 'Unknown'), iconBg: 'transparent',
             name: name, sub: wallet,
             priceHTML: 'Win rate ' + winrate + ' <span style="color:' + marketColor + '">' + arrow + ' ' + side + 'ing</span>',
@@ -1699,16 +1530,7 @@
             stat2l: 'SUPPLY ACQUIRED', stat2v: supply.split(' ')[0],
             stat3l: 'TRADES', stat3v: trades,
             pillTitle: side.toUpperCase() + ' \u00b7 ' + position, pillSub: 'of supply',
-            marketColor: marketColor, line: line, area: area, priceTag: wallet,
-            sideTitle: 'WALLET BREAKDOWN',
-            rows: [
-                ['Win rate', winrate + ' (' + trades + ' trades)'],
-                ['Amount', sol + ' SOL'],
-                ['Position size', position],
-                ['Supply acquired', supply],
-                ['Holding', holding]
-            ],
-            progress: holding
+            marketColor: marketColor, line: line, area: area, priceTag: wallet
         });
     }
 
@@ -1723,7 +1545,7 @@
         const area = line + ' L 510 200 L 0 200 Z';
         const arrow = side === 'Buy' ? '\u25b2' : '\u25bc';
 
-        openModal({
+        renderInlinePanel({
             iconHTML: personAvatarSVG(identityColor, name === 'Unknown'), iconBg: 'transparent',
             name: name, sub: wallet,
             priceHTML: '<span style="color:' + marketColor + '">' + arrow + ' ' + side + '</span> at ' + time,
@@ -1731,16 +1553,7 @@
             stat2l: 'PRICE', stat2v: '$' + price,
             stat3l: 'TOKENS', stat3v: tokens,
             pillTitle: side.toUpperCase() + ' \u00b7 ' + sol + ' SOL', pillSub: 'MC $' + mc,
-            marketColor: marketColor, line: line, area: area, priceTag: '$' + price,
-            sideTitle: 'TRADE DETAIL',
-            rows: [
-                ['Wallet', wallet],
-                ['Behaviour', name],
-                ['Price', '$' + price],
-                ['Tokens', tokens],
-                ['MC at trade', '$' + mc]
-            ],
-            progress: Math.min(100, Math.round((parseFloat(sol) / 10) * 100)) + '%'
+            marketColor: marketColor, line: line, area: area, priceTag: '$' + price
         });
     }
 
@@ -1757,11 +1570,10 @@
     wireRowClicks('participants-tbody', showParticipant);
     wireRowClicks('trades-tbody', showTrade);
 
-    document.getElementById('modal-back-btn').addEventListener('click', closeModal);
-    document.getElementById('modal-buy-btn').addEventListener('click', () => {
+    document.getElementById('inline-buy-btn').addEventListener('click', () => {
         alert('Buy flow is not wired up in this mockup.');
     });
-    document.getElementById('modal-sell-btn').addEventListener('click', () => {
+    document.getElementById('inline-sell-btn').addEventListener('click', () => {
         alert('Sell flow is not wired up in this mockup.');
     });
 })();
