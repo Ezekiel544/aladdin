@@ -113,7 +113,52 @@
             font-size: 12px;
         }
 
-        /* Shared stat-item styling (reused by the inline detail panel) */
+        /* Token Header Info Bar */
+        .token-header {
+            background-color: #121620;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .token-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .token-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #8b5cf6, #5b21b6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .token-titles h2 {
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .token-titles span {
+            color: #6b7280;
+            font-size: 11px;
+        }
+
+        .token-stats {
+            display: flex;
+            gap: 30px;
+            border-left: 1px solid #1f2937;
+            padding-left: 20px;
+        }
+
         .stat-item .label {
             font-size: 11px;
             color: #6b7280;
@@ -129,6 +174,38 @@
         .stat-item .value.green {
             color: #10b981;
             font-size: 12px;
+        }
+
+        .migration-pill {
+            margin-left: auto;
+            background-color: #1c1530;
+            border: 1px solid #3d2d5c;
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-align: right;
+        }
+
+        .migration-pill .title {
+            color: #8b5cf6;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .migration-pill .sub {
+            color: #9ca3af;
+            font-size: 10px;
+        }
+
+        .token-price-block .value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .token-price-block .green {
+            color: #10b981;
+            font-size: 12px;
+            font-weight: 600;
         }
 
         /* Main Dashboard Grid */
@@ -588,12 +665,84 @@
                 display: none;
             }
 
+            .token-header {
+                display: grid;
+                grid-template-columns: 1fr auto;
+                align-items: center;
+                column-gap: 10px;
+                row-gap: 8px;
+                padding: 10px 12px;
+            }
+
+            .token-info {
+                grid-column: 1;
+                gap: 8px;
+            }
+
+            .token-icon {
+                width: 30px;
+                height: 30px;
+            }
+
+            .token-titles h2 {
+                font-size: 13px;
+            }
+
+            .token-titles span {
+                font-size: 10px;
+            }
+
+            .token-price-block {
+                grid-column: 2;
+                text-align: right;
+            }
+
+            .token-price-block .value {
+                font-size: 12px;
+            }
+
+            .token-price-block .green {
+                font-size: 11px;
+                display: block;
+            }
+
+            .token-stats {
+                grid-column: 1 / -1;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+                border-left: none;
+                border-top: 1px solid #1f2937;
+                padding: 8px 0 0 0;
+                margin: 0;
+            }
+
             .stat-item .label {
                 font-size: 9px;
             }
 
             .stat-item .value {
                 font-size: 12px;
+            }
+
+            .migration-pill {
+                grid-column: 1 / -1;
+                margin-left: 0;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                text-align: left;
+                padding: 6px 10px;
+            }
+
+            .migration-pill .sub {
+                margin-left: 10px;
+            }
+
+            #back-to-token-btn {
+                grid-column: 1 / -1;
+                margin-left: 0 !important;
+                width: fit-content;
             }
 
             .chart-x-axis {
@@ -747,13 +896,6 @@
             margin-bottom: 12px;
         }
 
-        /* On large screens the big chart reacts to clicks instead, so the small side chart isn't needed there */
-        @media (min-width: 821px) {
-            .inline-chart-wrapper {
-                display: none;
-            }
-        }
-
         .inline-actions {
             display: flex;
             gap: 8px;
@@ -778,7 +920,6 @@
             background-color: #ef4444;
             color: #1a0505;
         }
-        
 
     </style>
 </head>
@@ -799,6 +940,41 @@
             <button class="wallet-btn">G1D9...M6KX</button>
         </div>
     </header>
+
+    <!-- Token Info Bar -->
+    <div class="token-header">
+        <div class="token-info">
+            <div class="token-icon" id="chart-context-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M6 12h12"/></svg>
+            </div>
+            <div class="token-titles">
+                <h2 id="chart-context-name">OMEGA</h2>
+                <span id="chart-context-sub">OmegaTur Network</span>
+            </div>
+        </div>
+        <div class="token-price-block" id="token-price-block">
+            <div class="value" id="chart-context-price">$0.00008141 <span class="green" id="chart-context-change">▲ 44.22%</span></div>
+        </div>
+        <div class="token-stats" id="chart-context-stats">
+            <div class="stat-item">
+                <div class="label" id="stat-1-label">MARKET CAP</div>
+                <div class="value" id="stat-1-value">$20.0K</div>
+            </div>
+            <div class="stat-item">
+                <div class="label" id="stat-2-label">LIQUIDITY</div>
+                <div class="value" id="stat-2-value">$10.0K</div>
+            </div>
+            <div class="stat-item">
+                <div class="label" id="stat-3-label">AGE</div>
+                <div class="value" id="stat-3-value">4m</div>
+            </div>
+        </div>
+        <div class="migration-pill" id="chart-context-badge">
+            <div class="title" id="chart-context-badge-title">44% TO MIGRATION</div>
+            <div class="sub" id="chart-context-badge-sub">Est. at $45K MC</div>
+        </div>
+        <button class="wallet-btn" id="back-to-token-btn" style="display:none; margin-left:8px;">&larr; OMEGA</button>
+    </div>
 
     <!-- Dashboard Content Grid -->
     <div class="dashboard-grid">
@@ -829,13 +1005,11 @@
                     <span id="yaxis-4">0.000050</span>
                 </div>
                 <div class="live-price-tag" id="main-chart-pricetag">0.00008141</div>
-                <!-- <div class="chart-trade-markers" id="chart-trade-markers"></div> -->
+                <div class="chart-trade-markers" id="chart-trade-markers"></div>
             </div>
-
-               
             <div class="chart-legend">
-                <span class="legend-item" onclick="window.open('https://solscan.io', '_blank')"><span class="legend-dot buy"></span>Buy</span>
-                <span class="legend-item" onclick="window.open('https://solscan.io', '_blank')"><span class="legend-dot sell"></span>Sell</span>
+                <span class="legend-item"><span class="legend-dot buy"></span>Buy</span>
+                <span class="legend-item"><span class="legend-dot sell"></span>Sell</span>
             </div>
             <div class="chart-x-axis" id="main-chart-xaxis">
                 <span>08:45</span><span>08:50</span><span>08:55</span><span>09:00</span><span>09:05</span><span>09:10</span><span>09:15</span>
@@ -1230,6 +1404,82 @@
         return h + 1;
     }
 
+    // Snapshot the original OMEGA state so we can restore it exactly
+    const original = {
+        icon: document.getElementById('chart-context-icon').innerHTML,
+        name: 'OMEGA',
+        sub: 'OmegaTur Network',
+        priceHTML: document.getElementById('chart-context-price').innerHTML,
+        stat1l: 'MARKET CAP', stat1v: '$20.0K',
+        stat2l: 'LIQUIDITY', stat2v: '$10.0K',
+        stat3l: 'AGE', stat3v: '4m',
+        pillTitle: '44% TO MIGRATION', pillSub: 'Est. at $45K MC',
+        area: document.getElementById('main-chart-area').getAttribute('d'),
+        line: document.getElementById('main-chart-line').getAttribute('d'),
+        priceTag: '0.00008141',
+        sideTitle: 'MIGRATION PROJECTION',
+        rows: [
+            ['Current MC', '$20.0K'], ['Liquidity', '$10.0K'], ['Target MC (Migration)', '$45,000'],
+            ['% to Migrate', '44%'], ['Est. Time to Migrate', '~12–25m']
+        ],
+        progress: '44%'
+    };
+
+    function applyHeader(cfg) {
+        document.getElementById('chart-context-icon').innerHTML = cfg.iconHTML;
+        document.getElementById('chart-context-icon').style.background = cfg.iconBg;
+        document.getElementById('chart-context-name').textContent = cfg.name;
+        document.getElementById('chart-context-sub').textContent = cfg.sub;
+        document.getElementById('chart-context-price').innerHTML = cfg.priceHTML;
+        document.getElementById('stat-1-label').textContent = cfg.stat1l;
+        document.getElementById('stat-1-value').textContent = cfg.stat1v;
+        document.getElementById('stat-2-label').textContent = cfg.stat2l;
+        document.getElementById('stat-2-value').textContent = cfg.stat2v;
+        document.getElementById('stat-3-label').textContent = cfg.stat3l;
+        document.getElementById('stat-3-value').textContent = cfg.stat3v;
+        document.getElementById('chart-context-badge-title').textContent = cfg.pillTitle;
+        document.getElementById('chart-context-badge-title').style.color = cfg.marketColor;
+        document.getElementById('chart-context-badge-sub').textContent = cfg.pillSub;
+        document.getElementById('chart-context-badge').style.borderColor = cfg.marketColor + '55';
+
+        document.getElementById('main-chart-line').setAttribute('d', cfg.line);
+        document.getElementById('main-chart-line').setAttribute('stroke', cfg.marketColor);
+        document.getElementById('main-chart-area').setAttribute('d', cfg.area);
+        const gradStops = document.querySelectorAll('#exactChartGradient stop');
+        gradStops[0].setAttribute('stop-color', cfg.marketColor);
+        gradStops[1].setAttribute('stop-color', cfg.marketColor);
+        document.getElementById('main-chart-pricetag').textContent = cfg.priceTag;
+        document.getElementById('main-chart-pricetag').style.backgroundColor = cfg.marketColor;
+
+        document.getElementById('side-card-title').innerHTML = cfg.sideTitle + ' <span>\u24d8</span>';
+        for (let i = 0; i < 5; i++) {
+            document.getElementById('side-row-' + (i + 1) + '-label').textContent = cfg.rows[i][0];
+            document.getElementById('side-row-' + (i + 1) + '-val').textContent = cfg.rows[i][1];
+        }
+        document.getElementById('side-row-4-val').style.color = cfg.marketColor;
+        document.getElementById('side-progress-fill').style.width = cfg.progress;
+        document.getElementById('side-progress-fill').style.backgroundColor = cfg.marketColor;
+
+        document.getElementById('back-to-token-btn').style.display = 'inline-flex';
+    }
+
+    function restoreOriginal() {
+        applyHeader({
+            iconHTML: original.icon, iconBg: 'linear-gradient(135deg, #8b5cf6, #5b21b6)',
+            name: original.name, sub: original.sub, priceHTML: original.priceHTML,
+            stat1l: original.stat1l, stat1v: original.stat1v,
+            stat2l: original.stat2l, stat2v: original.stat2v,
+            stat3l: original.stat3l, stat3v: original.stat3v,
+            pillTitle: original.pillTitle, pillSub: original.pillSub, marketColor: '#8b5cf6',
+            line: original.line, area: original.area, priceTag: original.priceTag,
+            sideTitle: original.sideTitle, rows: original.rows, progress: original.progress
+        });
+        document.getElementById('main-chart-area').setAttribute('fill', 'url(#exactChartGradient)');
+        document.getElementById('chart-context-badge').style.borderColor = '';
+        document.getElementById('back-to-token-btn').style.display = 'none';
+        document.querySelectorAll('#participants-tbody tr, #trades-tbody tr').forEach(r => r.classList.remove('row-selected'));
+    }
+
     function renderInlinePanel(cfg) {
         document.getElementById('inline-detail-empty').style.display = 'none';
         document.getElementById('inline-detail-content').style.display = 'block';
@@ -1259,16 +1509,6 @@
         document.getElementById('inline-grad-stop-2').setAttribute('stop-color', cfg.marketColor);
         document.getElementById('inline-chart-pricetag').textContent = cfg.priceTag;
         document.getElementById('inline-chart-pricetag').style.backgroundColor = cfg.marketColor;
-
-        // On large screens the big chart takes over showing this entity's data instead of a small side chart.
-        document.getElementById('main-chart-line').setAttribute('d', cfg.line);
-        document.getElementById('main-chart-line').setAttribute('stroke', cfg.marketColor);
-        document.getElementById('main-chart-area').setAttribute('d', cfg.area);
-        const bigGradStops = document.querySelectorAll('#exactChartGradient stop');
-        bigGradStops[0].setAttribute('stop-color', cfg.marketColor);
-        bigGradStops[1].setAttribute('stop-color', cfg.marketColor);
-        document.getElementById('main-chart-pricetag').textContent = cfg.priceTag;
-        document.getElementById('main-chart-pricetag').style.backgroundColor = cfg.marketColor;
     }
 
     function showParticipant(row) {

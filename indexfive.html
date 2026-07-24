@@ -747,13 +747,6 @@
             margin-bottom: 12px;
         }
 
-        /* On large screens the big chart reacts to clicks instead, so the small side chart isn't needed there */
-        @media (min-width: 821px) {
-            .inline-chart-wrapper {
-                display: none;
-            }
-        }
-
         .inline-actions {
             display: flex;
             gap: 8px;
@@ -778,7 +771,6 @@
             background-color: #ef4444;
             color: #1a0505;
         }
-        
 
     </style>
 </head>
@@ -829,13 +821,11 @@
                     <span id="yaxis-4">0.000050</span>
                 </div>
                 <div class="live-price-tag" id="main-chart-pricetag">0.00008141</div>
-                <!-- <div class="chart-trade-markers" id="chart-trade-markers"></div> -->
+                <div class="chart-trade-markers" id="chart-trade-markers"></div>
             </div>
-
-               
             <div class="chart-legend">
-                <span class="legend-item" onclick="window.open('https://solscan.io', '_blank')"><span class="legend-dot buy"></span>Buy</span>
-                <span class="legend-item" onclick="window.open('https://solscan.io', '_blank')"><span class="legend-dot sell"></span>Sell</span>
+                <span class="legend-item"><span class="legend-dot buy"></span>Buy</span>
+                <span class="legend-item"><span class="legend-dot sell"></span>Sell</span>
             </div>
             <div class="chart-x-axis" id="main-chart-xaxis">
                 <span>08:45</span><span>08:50</span><span>08:55</span><span>09:00</span><span>09:05</span><span>09:10</span><span>09:15</span>
@@ -1259,16 +1249,6 @@
         document.getElementById('inline-grad-stop-2').setAttribute('stop-color', cfg.marketColor);
         document.getElementById('inline-chart-pricetag').textContent = cfg.priceTag;
         document.getElementById('inline-chart-pricetag').style.backgroundColor = cfg.marketColor;
-
-        // On large screens the big chart takes over showing this entity's data instead of a small side chart.
-        document.getElementById('main-chart-line').setAttribute('d', cfg.line);
-        document.getElementById('main-chart-line').setAttribute('stroke', cfg.marketColor);
-        document.getElementById('main-chart-area').setAttribute('d', cfg.area);
-        const bigGradStops = document.querySelectorAll('#exactChartGradient stop');
-        bigGradStops[0].setAttribute('stop-color', cfg.marketColor);
-        bigGradStops[1].setAttribute('stop-color', cfg.marketColor);
-        document.getElementById('main-chart-pricetag').textContent = cfg.priceTag;
-        document.getElementById('main-chart-pricetag').style.backgroundColor = cfg.marketColor;
     }
 
     function showParticipant(row) {
